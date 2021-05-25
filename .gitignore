@@ -9,6 +9,7 @@ front/bazel-out
 
 # dependencies
 front/node_modules
+server/node_modules
 
 # profiling files
 front/chrome-profiler-events*.json
