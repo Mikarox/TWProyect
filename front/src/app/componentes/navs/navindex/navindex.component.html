@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg" id="navbar">
+    <div class="container-fluid">
+        <a routerLink="" routerLinkActive="active" class="nav-link active">Hospital</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" type="button" id="navbarDropdownMenuLink"  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        Iniciar Sesion
+                    </a>
+
+                    <ul class="login" >
+                        <app-login></app-login>
+                    </ul>
+
+                </li>
+                <li class="nav-item">
+                    <a routerLink="diseaseslist" routerLinkActive="active">Lista de enfermedades </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<router-outlet>
+</router-outlet>
