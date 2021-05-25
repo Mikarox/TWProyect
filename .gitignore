@@ -6,6 +6,11 @@ front/tmp
 front/out-tsc
 # Only exists if Bazel was run
 front/bazel-out
+server/dist
+server/tmp
+server/out-tsc
+# Only exists if Bazel was run
+server/bazel-out
 
 # dependencies
 front/node_modules
@@ -13,6 +18,7 @@ server/node_modules
 
 # profiling files
 front/chrome-profiler-events*.json
+server/chrome-profiler-events*.json
 
 # IDEs and editors
 .idea
@@ -36,9 +42,17 @@ front/chrome-profiler-events*.json
 front/connect.lock
 front/coverage
 front/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
+front/npm-debug.log
+front/yarn-error.log
+front/testem.log
+front/typings
+server/typings
+server/connect.lock
+server/coverage
+server/libpeerconnection.log
+server/npm-debug.log
+server/yarn-error.log
+server/testem.log
 front/typings
 
 # System Files
