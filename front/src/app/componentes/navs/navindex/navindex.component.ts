@@ -11,5 +11,4 @@ export class NavindexComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +36,7 @@ import { ConsulthistoryComponent } from './componentes/pages/consulthistory/cons
 import { ConsultplayComponent } from './componentes/pages/consultplay/consultplay.component';
 import { PrescriptsviewComponent } from './componentes/pages/prescriptsview/prescriptsview.component';
 import { LoginService } from './services/login.service';
-
+import { UsersService } from './services/users.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,9 +65,15 @@ import { LoginService } from './services/login.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService, 
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
