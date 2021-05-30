@@ -15,9 +15,11 @@ ul,
 ol {
     list-style-type: none;
 }
+
 .login{
     width: 500px;
-    height: 400px;
+    height: 450px;
+    z-index: 1;
 }
 
 
