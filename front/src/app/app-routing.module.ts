@@ -56,6 +56,7 @@ const routes: Routes = [
       {path: '', redirectTo: '**', pathMatch: 'full' },
       {path: '**', component: IndexnurseComponent}
     ]},
+  {path: 'usradd', component: UsraddComponent},
   {path: 'diseaseslist', component: DiseseslistComponent},
   {path: '**', component: IndexComponent},
 ];
