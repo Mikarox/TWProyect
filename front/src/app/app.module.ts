@@ -37,6 +37,8 @@ import { ConsultplayComponent } from './componentes/pages/consultplay/consultpla
 import { PrescriptsviewComponent } from './componentes/pages/prescriptsview/prescriptsview.component';
 import { LoginService } from './services/login.service';
 import { UsersService } from './services/users.service';
+import { RegistroComponent } from './componentes/pages/registro/registro.component';
+import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,9 @@ import { UsersService } from './services/users.service';
     UsraddComponent,
     ConsulthistoryComponent,
     ConsultplayComponent,
-    PrescriptsviewComponent
+    PrescriptsviewComponent,
+    RegistroComponent,
+    ForgotPassComponent
   ],
   imports: [
     BrowserModule,

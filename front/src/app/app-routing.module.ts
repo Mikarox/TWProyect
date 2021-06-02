@@ -19,6 +19,8 @@ import { DiseseseditComponent } from './componentes/pages/disesesedit/disesesedi
 import { DisesesaddComponent } from './componentes/pages/disesesadd/disesesadd.component';
 import { DisesesrmComponent } from './componentes/pages/disesesrm/disesesrm.component';
 import { UsraddComponent } from './componentes/pages/usradd/usradd.component';
+import { RegistroComponent } from './componentes/pages/registro/registro.component';
+import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass.component';
 
 
 const routes: Routes = [
@@ -56,7 +58,8 @@ const routes: Routes = [
       {path: '', redirectTo: '**', pathMatch: 'full' },
       {path: '**', component: IndexnurseComponent}
     ]},
-  {path: 'usradd', component: UsraddComponent},
+  {path: 'registro', component: RegistroComponent},
+  {path: 'forgotpass', component: ForgotPassComponent},
   {path: 'diseaseslist', component: DiseseslistComponent},
   {path: '**', component: IndexComponent},
 ];
