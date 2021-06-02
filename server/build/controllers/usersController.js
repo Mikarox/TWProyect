@@ -44,7 +44,9 @@ class UserController {
     //Se ejecuta la query para registrar un usuario
     register(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+            if (req.file) { //Si la foto existe 
+                req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+            }
             req.body.USR_PASSW = yield bcryptjs_1.default.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
             yield database_1.default.query('INSERT INTO users set ?', [req.body]);
             res.json({ message: 'Usario registrado' });

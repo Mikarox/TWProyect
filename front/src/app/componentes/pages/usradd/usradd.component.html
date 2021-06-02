@@ -47,9 +47,9 @@
                 </div>
               </div>        
             </div>
-            <div class="col-sm-12 col-md-12  col-lg-4">
+            <div class="col-sm-12 col-md-12  col-lg-4 ">
               <div class="mb-3">
-                <input type="password" class="form-control" name="PASSW_CONF" formControlName="PASSW_CONF" placeholder="Confirme contraseña" >
+                <input type="password" class="form-control " name="PASSW_CONF" formControlName="PASSW_CONF" placeholder="Confirme contraseña" >
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('PASSW_CONF')!.errors && form.get('PASSW_CONF')!.touched || match">
                   <p class="msjErr" *ngIf="form.get('PASSW_CONF')!.hasError('required')">
@@ -62,6 +62,26 @@
               </div>        
             </div>
           </div>
+          <div class="row d-flex justify-content-end">
+            <div class="col-sm-12 col-md-12 col-lg-8 input">
+              <p class="msjInfo">
+                <i class="fas fa-info-circle"></i> 
+                En caso de no contar con una clave de cuenta, deje este campo vacío
+              </p>
+              <div class="mb-3 input-group input">
+                <input type="text" class="form-control" name="KEY" formControlName="KEY"  placeholder="Clave de cuenta" >           
+                <span class="input-group-text tipoCuenta">Tipo de cuenta:&nbsp; 
+                  <div *ngIf="claveCuenta=='0'">PACIENTE</div>
+                  <div *ngIf="claveCuenta=='1'">ENFERMERA</div>
+                  <div *ngIf="claveCuenta=='2'">DOCTOR</div>
+                </span>
+              </div> 
+              <!-- Directiva para mostrar mensajes reactivos -->    
+              <p class="msjErr" *ngIf="msjNoValido">
+                Clave no valida
+              </p>  
+            </div>
+          </div><p class="salto"></p>
           <div class="row">
             <p class="separador">Datos personales</p>
             <div class="col-sm-12 col-md-12 col-lg-6">

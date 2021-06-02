@@ -25,7 +25,9 @@ class UserController{
   }
   //Se ejecuta la query para registrar un usuario
   public async register (req: Request, res: Response): Promise<void>{
-    req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+    if(req.file){ //Si la foto existe 
+      req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+    } 
     req.body.USR_PASSW= await bcryptjs.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
     await pool.query('INSERT INTO users set ?', [req.body]);
     res.json({message: 'Usario registrado'});
