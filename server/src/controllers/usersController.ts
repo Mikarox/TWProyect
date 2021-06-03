@@ -1,6 +1,7 @@
 import bcryptjs  from 'bcryptjs';
 
 import { Request, Response } from 'express';
+import { transporter } from './../config/mailer';
 
 import pool from '../database';
 //Se definen lo que realizarán las peticiones 
@@ -27,6 +28,10 @@ class UserController{
   public async register (req: Request, res: Response): Promise<void>{
     req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
     req.body.USR_PASSW= await bcryptjs.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
+
+    
+
+
     await pool.query('INSERT INTO users set ?', [req.body]);
     res.json({message: 'Usario registrado'});
   }
