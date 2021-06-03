@@ -19,6 +19,7 @@ import { DiseseseditComponent } from './componentes/pages/disesesedit/disesesedi
 import { DisesesaddComponent } from './componentes/pages/disesesadd/disesesadd.component';
 import { DisesesrmComponent } from './componentes/pages/disesesrm/disesesrm.component';
 import { UsraddComponent } from './componentes/pages/usradd/usradd.component';
+import { VerifyComponent } from './componentes/pages/verify/verify.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,7 @@ const routes: Routes = [
       {path: '**', component: IndexnurseComponent}
     ]},
   {path: 'usradd', component: UsraddComponent},
+  {path: 'verify', component: VerifyComponent},
   {path: 'diseaseslist', component: DiseseslistComponent},
   {path: '**', component: IndexComponent},
 ];

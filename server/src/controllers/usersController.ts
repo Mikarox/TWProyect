@@ -26,12 +26,22 @@ class UserController{
   }
   //Se ejecuta la query para registrar un usuario
   public async register (req: Request, res: Response): Promise<void>{
-    req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+    if(req.file){ //Si la foto existe 
+      req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+    } 
+
+    let email = req.body.EMAIL; 
+
+    await transporter.sendMail({
+      from: '"Verify Account <TWproyect@gmail.com>"', // sender address
+      to: req.body.EMAIL , // list of receivers
+      subject: "Hello, did you create a acount? ✔", // Subject line
+      text: "Please verify account", // plain text body
+      html: '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify/${email}">verificar cuenta</a>', // html body
+    });
+
+
     req.body.USR_PASSW= await bcryptjs.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
-
-    
-
-
     await pool.query('INSERT INTO users set ?', [req.body]);
     res.json({message: 'Usario registrado'});
   }
