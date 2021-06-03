@@ -48,9 +48,11 @@ class UserController {
             if (req.file) { //Si la foto existe 
                 req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
             }
-            let page = '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify?' + req.body.EMAIL + '">verificar cuenta</a>';
+            let page = `<b>deveria enviar un botton para </b> <br> 
+    <a href="http://localhost:4200/verify/` + req.body.EMAIL + `">verificar cuenta</a>
+    `;
             yield mailer_1.transporter.sendMail({
-                from: '"Verify Account <TWproyect@gmail.com>"',
+                from: '"Verify Acount👻<' + req.body.NAME + " " + req.body.LASTNAME + ' Hospital@isc6to.com>"',
                 to: req.body.EMAIL,
                 subject: "Hello, did you create a acount? ✔",
                 text: "Please verify account",

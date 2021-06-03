@@ -28,12 +28,14 @@ class UserController{
   public async register (req: Request, res: Response): Promise<void>{
     if(req.file){ //Si la foto existe 
       req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
-    } 
+    }   
 
-    let page = '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify?' + req.body.EMAIL +'">verificar cuenta</a>';
+    let page = `<b>deveria enviar un botton para </b> <br> 
+    <a href="http://localhost:4200/verify/` + req.body.EMAIL + `">verificar cuenta</a>
+    `;
 
     await transporter.sendMail({
-      from: '"Verify Account <TWproyect@gmail.com>"', // sender address
+      from: '"Verify Acount👻<' + req.body.NAME + " " +  req.body.LASTNAME  +' Hospital@isc6to.com>"', // sender address
       to: req.body.EMAIL , // list of receivers
       subject: "Hello, did you create a acount? ✔", // Subject line
       text: "Please verify account", // plain text body
