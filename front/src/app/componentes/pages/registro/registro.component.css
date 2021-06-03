@@ -8,6 +8,29 @@
     margin-bottom: 30px;
     
   }
+  /* mensaje indicando el tipo de cuenta del usario  */
+  .tipoCuenta{
+    background-color: #00a6ff;
+    color: #ffffff;
+    margin-bottom: 0px;
+  }
+  .msjInfo{
+    display: inline;
+    background-color: #b0e3ff;
+    color: #000000; 
+    margin: 0px;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 10px 10px 10px 10px;
+    text-align: center;
+  }
+  .input{
+    margin-top: 10px;
+    margin-bottom: 0px !important;
+  }
+  .salto{
+    margin-bottom: 15px !important;
+  }
   /* mensaje de error indicando campo mal ingresado  */
   .msjErr{
     display: block;

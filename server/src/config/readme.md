@@ -1,1 +1,1 @@
-Directio que contiene mailer
+directory config mailer
