@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 server/uploads
-server/src/config/mailer.ts
-server/build/config/mailer.js
+server/src/config/mailer
+server/build/config/mailer
 
 # compiled output
 front/dist
