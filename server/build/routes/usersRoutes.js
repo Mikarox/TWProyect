@@ -17,6 +17,7 @@ class UsersRoutes {
         this.router.get('/:id', usersController_1.usersController.getOne); //mostrar un usuario por su id
         this.router.post('/', multer_1.default.single('PHOTO'), usersController_1.usersController.register); //registrar un usuario
         this.router.put('/:id', usersController_1.usersController.update); //actualizar un usuario por su id
+        this.router.get('/verify/:email', usersController_1.usersController.validate); //valida el usuario en la base de datos
         this.router.delete('/:id', usersController_1.usersController.delete); //eliminar un usuario por su id
     }
 }

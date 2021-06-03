@@ -21,7 +21,7 @@ class UserController{
       if(result.length>0){
         return res.json(result[0]);
       }
-      res.status(404).json({message: 'Usuario no encontrado'});
+      res.status(404).json({message: 'Usuario no encontrado en getone'});
     });
   }
   //Se ejecuta la query para registrar un usuario
@@ -55,7 +55,7 @@ class UserController{
       if(result.affectedRows==1){
         return res.json({message: 'El usuario fue actualizado'});
       }
-      res.status(404).json({message: 'Usuario no encontrado'});
+      res.status(404).json({message: 'Usuario no encontrado en update'});
     });
   }
   //Se ejecuta la query para eliminar un usuario por su id
@@ -66,15 +66,24 @@ class UserController{
       if(result.affectedRows==1){
         return res.json({message: 'El usuario fue eliminado'});
       }
-      res.status(404).json({message: 'Usuario no encontrado'});
+      res.status(404).json({message: 'Usuario no encontrado en delete'});
     });
   }
 
-  //public async active (req: Request, res: Response): Promise<any>{
-   // const { EMAIL } = req.params.email;
-    //
-  //}
+  //Se ejecuta la query para registrare un usuario por su email
+  public async validate (req: Request, res: Response): Promise<any>{
+    const {email} = req.params;
+    console.log(req.params);
 
+    console.log(email);
+    await pool.query('UPDATE users set IS_REG="1" WHERE EMAIL = "?"', email,function(err, result, fields) {
+      if (err) throw err;
+      if(result.affectedRows==1){
+        return res.json({message: 'El usuario fue validado'});
+      }
+      res.status(404).json({message: 'Correo INVALIDO, NO VALIDADO'});
+    });
+  }
 }
 
 export const usersController = new UserController();

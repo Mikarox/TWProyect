@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { User } from 'src/app/models/User';
+import { UsersService } from '../../../services/users.service';
+
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
@@ -8,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VerifyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private userService: UsersService) {
 
   }
 
@@ -17,12 +20,8 @@ export class VerifyComponent implements OnInit {
   ngOnInit(): void {
     
     this.email = this.route.snapshot.params.email;
-    console.log(this.route.snapshot.params.email);
-
-
-    
-
-
   }
+
+  
 
 }

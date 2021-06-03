@@ -45,4 +45,10 @@ export class UsersService {
     return this.http.put(`${this.API_URI}/users/${id}`, updateUser);
   }
 
+  valityUser(email: string): Observable<User>{
+    return this.http.get(`${this.API_URI}/users/verify/${email}`);
+  }
+
+
+
 }

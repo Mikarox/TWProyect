@@ -38,7 +38,7 @@ class UserController {
                 if (result.length > 0) {
                     return res.json(result[0]);
                 }
-                res.status(404).json({ message: 'Usuario no encontrado' });
+                res.status(404).json({ message: 'Usuario no encontrado en getone' });
             });
         });
     }
@@ -73,7 +73,7 @@ class UserController {
                 if (result.affectedRows == 1) {
                     return res.json({ message: 'El usuario fue actualizado' });
                 }
-                res.status(404).json({ message: 'Usuario no encontrado' });
+                res.status(404).json({ message: 'Usuario no encontrado en update' });
             });
         });
     }
@@ -87,7 +87,23 @@ class UserController {
                 if (result.affectedRows == 1) {
                     return res.json({ message: 'El usuario fue eliminado' });
                 }
-                res.status(404).json({ message: 'Usuario no encontrado' });
+                res.status(404).json({ message: 'Usuario no encontrado en delete' });
+            });
+        });
+    }
+    //Se ejecuta la query para registrare un usuario por su email
+    validate(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            console.log(req.params);
+            console.log(email);
+            yield database_1.default.query('UPDATE users set IS_REG="1" WHERE EMAIL = "?"', email, function (err, result, fields) {
+                if (err)
+                    throw err;
+                if (result.affectedRows == 1) {
+                    return res.json({ message: 'El usuario fue validado' });
+                }
+                res.status(404).json({ message: 'Correo INVALIDO, NO VALIDADO' });
             });
         });
     }
