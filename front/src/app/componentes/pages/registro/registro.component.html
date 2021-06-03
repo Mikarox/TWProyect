@@ -1,4 +1,3 @@
-
 <br><br><br>
 <!-- Formulario de registro de usario  -->
 <div class="col-md-8 offset-md-2">
@@ -7,7 +6,7 @@
       <form [formGroup]="form" (ngSubmit)="save($event)" enctype="multipart/form-data">
         <div class="container ">
           <div class="row">
-            <p class="separador">Datos de la cuenta</p>
+            <p class="separador text-center">Datos de la cuenta</p>
             <div class="col-sm-12 col-md-12 col-lg-4">
               <div class="mb-3">
                 <input type="text" class="form-control" name="USR_NAME" formControlName="USR_NAME"  placeholder="Usuario" autofocus>
@@ -140,7 +139,7 @@
             </div>
           </div>
           <div class="row">
-            <p class="separador">Medios de contacto</p>
+            <p class="separador text-center">Medios de contacto</p>
             <div class="col-sm-12 col-md-12 col-lg-6">
               <div class="mb-3">
                 <input type="email" class="form-control" name="EMAIL" formControlName="EMAIL" placeholder="Correo electrónico">
@@ -183,7 +182,7 @@
             </div>
           </div>
           <div class="row">
-            <p class="separador">Dirección</p>
+            <p class="separador text-center">Dirección</p>
             <div class="col-sm-12 col-md-12 col-lg-3">
               <div class="mb-3">
                 <select
@@ -260,7 +259,7 @@
             </div>
           </div>
           <div class="row">
-            <p class="separador">Foto de perfil (Campo no obligatorio)</p>
+            <p class="separador text-center">Foto de perfil (Campo no obligatorio)</p>
             <div class="col-sm-12 col-md-8 col-lg-9">
               <div class="mb-3">
                 <input type="file" accept="image/*" class="form-control" name="PHOTO" formControlName="PHOTO" (change)="capturarFile($event)">

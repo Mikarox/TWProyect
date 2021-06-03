@@ -3,6 +3,8 @@
 server/uploads
 server\src\config\mailer.ts
 server\build\config\mailer.ts
+server/src/config/mailer.ts
+server/build/config/mailer.js
 
 # compiled output
 front/dist

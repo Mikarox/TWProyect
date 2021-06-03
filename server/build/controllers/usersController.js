@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersController = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const mailer_1 = require("./../config/mailer");
 const database_1 = __importDefault(require("../database"));
 //Se definen lo que realizarán las peticiones 
 class UserController {
@@ -47,6 +48,16 @@ class UserController {
             if (req.file) { //Si la foto existe 
                 req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
             }
+
+            let page = '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify/' + req.body.EMAIL + '">verificar cuenta</a>';
+
+            yield mailer_1.transporter.sendMail({
+                from: '"Verify Account <TWproyect@gmail.com>"',
+                to: req.body.EMAIL,
+                subject: "Hello, did you create a acount? ✔",
+                text: "Please verify account",
+                html: page, // html body
+            });
             req.body.USR_PASSW = yield bcryptjs_1.default.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
             yield database_1.default.query('INSERT INTO users set ?', [req.body]);
             res.json({ message: 'Usario registrado' });

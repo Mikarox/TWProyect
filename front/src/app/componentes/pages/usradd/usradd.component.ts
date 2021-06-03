@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsraddComponent implements OnInit {
 
+  constructor(){
+
+  }
 
   ngOnInit(): void {
   }
-  //Formulario
   
+ 
 }

@@ -1,6 +1,7 @@
 import bcryptjs  from 'bcryptjs';
 
 import { Request, Response } from 'express';
+import { transporter } from './../config/mailer';
 
 import pool from '../database';
 //Se definen lo que realizarán las peticiones 
@@ -28,6 +29,18 @@ class UserController{
     if(req.file){ //Si la foto existe 
       req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
     } 
+
+    let page = '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify?' + req.body.EMAIL +'">verificar cuenta</a>';
+
+    await transporter.sendMail({
+      from: '"Verify Account <TWproyect@gmail.com>"', // sender address
+      to: req.body.EMAIL , // list of receivers
+      subject: "Hello, did you create a acount? ✔", // Subject line
+      text: "Please verify account", // plain text body
+      html: page, // html body
+    });
+
+
     req.body.USR_PASSW= await bcryptjs.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
     await pool.query('INSERT INTO users set ?', [req.body]);
     res.json({message: 'Usario registrado'});
@@ -54,6 +67,12 @@ class UserController{
       res.status(404).json({message: 'Usuario no encontrado'});
     });
   }
+
+  //public async active (req: Request, res: Response): Promise<any>{
+   // const { EMAIL } = req.params.email;
+    //
+  //}
+
 }
 
 export const usersController = new UserController();
