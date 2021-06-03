@@ -48,13 +48,13 @@ class UserController {
             if (req.file) { //Si la foto existe 
                 req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
             }
-            let email = req.body.EMAIL;
+            let page = '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify?' + req.body.EMAIL + '">verificar cuenta</a>';
             yield mailer_1.transporter.sendMail({
                 from: '"Verify Account <TWproyect@gmail.com>"',
                 to: req.body.EMAIL,
                 subject: "Hello, did you create a acount? ✔",
                 text: "Please verify account",
-                html: '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify/${email}">verificar cuenta</a>', // html body
+                html: page, // html body
             });
             req.body.USR_PASSW = yield bcryptjs_1.default.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
             yield database_1.default.query('INSERT INTO users set ?', [req.body]);

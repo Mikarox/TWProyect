@@ -30,14 +30,14 @@ class UserController{
       req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
     } 
 
-    let email = req.body.EMAIL; 
+    let page = '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify?' + req.body.EMAIL +'">verificar cuenta</a>';
 
     await transporter.sendMail({
       from: '"Verify Account <TWproyect@gmail.com>"', // sender address
       to: req.body.EMAIL , // list of receivers
       subject: "Hello, did you create a acount? ✔", // Subject line
       text: "Please verify account", // plain text body
-      html: '<b>deveria enviar un botton para </b> <br> <a href="http://localhost:4200/verify/${email}">verificar cuenta</a>', // html body
+      html: page, // html body
     });
 
 
@@ -67,6 +67,12 @@ class UserController{
       res.status(404).json({message: 'Usuario no encontrado'});
     });
   }
+
+  //public async active (req: Request, res: Response): Promise<any>{
+   // const { EMAIL } = req.params.email;
+    //
+  //}
+
 }
 
 export const usersController = new UserController();
