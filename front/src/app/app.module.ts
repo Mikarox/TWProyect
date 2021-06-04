@@ -39,7 +39,7 @@ import { LoginService } from './services/login.service';
 import { UsersService } from './services/users.service';
 import { VerifyComponent } from './componentes/pages/verify/verify.component';
 import { RegistroComponent } from './componentes/pages/registro/registro.component';
-import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass.component';
+import { ForgotpassComponent } from './componentes/pages/forgotpass/forgotpass.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +67,7 @@ import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass
     PrescriptsviewComponent,
     VerifyComponent,
     RegistroComponent,
-    ForgotPassComponent
+    ForgotpassComponent
   ],
   imports: [
     BrowserModule,

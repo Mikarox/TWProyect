@@ -91,7 +91,7 @@ class UserController {
             });
         });
     }
-    //Se ejecuta la query para registrare un usuario por su email
+    //Se ejecuta la query para validar un usuario por su email
     validate(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email } = req.params;
@@ -103,6 +103,13 @@ class UserController {
                 }
                 res.status(404).json({ message: 'Correo INVALIDO, NO VALIDADO' });
             });
+        });
+    }
+    //Se ejecuta la query para restablecer la contrasna de  un usuario por su email
+    recoverPass(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body.EMAIL);
+            console.log(req.params.EMAIL);
         });
     }
 }
