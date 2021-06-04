@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { User } from 'src/app/models/User';
 import { UsersService } from '../../../services/users.service';
 
 @Component({
@@ -20,8 +19,12 @@ export class VerifyComponent implements OnInit {
   ngOnInit(): void {
     
     this.email = this.route.snapshot.params.email;
+    this.userService.valityUser(this.email).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.log(err)
+    );
   }
-
-  
 
 }

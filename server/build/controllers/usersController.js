@@ -95,13 +95,11 @@ class UserController {
     validate(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email } = req.params;
-            console.log(req.params);
-            console.log(email);
-            yield database_1.default.query('UPDATE users set IS_REG="1" WHERE EMAIL = "?"', email, function (err, result, fields) {
+            yield database_1.default.query('UPDATE users set IS_REG="1" WHERE EMAIL = ?', [email], function (err, result, fields) {
                 if (err)
                     throw err;
                 if (result.affectedRows == 1) {
-                    return res.json({ message: 'El usuario fue validado' });
+                    return res.json({ message: 'El usuario fue validado correctamente' });
                 }
                 res.status(404).json({ message: 'Correo INVALIDO, NO VALIDADO' });
             });

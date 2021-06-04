@@ -73,13 +73,10 @@ class UserController{
   //Se ejecuta la query para registrare un usuario por su email
   public async validate (req: Request, res: Response): Promise<any>{
     const {email} = req.params;
-    console.log(req.params);
-
-    console.log(email);
-    await pool.query('UPDATE users set IS_REG="1" WHERE EMAIL = "?"', email,function(err, result, fields) {
+    await pool.query('UPDATE users set IS_REG="1" WHERE EMAIL = ?', [email] ,function(err, result, fields) {
       if (err) throw err;
       if(result.affectedRows==1){
-        return res.json({message: 'El usuario fue validado'});
+        return res.json({message: 'El usuario fue validado correctamente'});
       }
       res.status(404).json({message: 'Correo INVALIDO, NO VALIDADO'});
     });

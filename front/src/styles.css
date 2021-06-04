@@ -4,7 +4,7 @@ body
 }
 
 nav{
-    background-color: #1e7ad3;
+    background: #1e7ad3;
 }
 
 footer{
@@ -38,7 +38,7 @@ nav li a {
 }
 
 nav li a:hover {
-    background-color: #146c9b;
+    background-color: #3982ca;
     /* controla el diseño del elemento activo, (mouse encima)
     color de fondo*/
     border: 1px solid#deeffa;
