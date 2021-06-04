@@ -83,7 +83,7 @@ class UserController {
   }
 
   //Se ejecuta la query para restablecer la contrasna de  un usuario por su email
-  public async recoverPass(req: Request, res: Response): Promise<void> {
+  public async recoverPass(req: Request, res: Response): Promise<any> {
 
     console.log(req.body.EMAIL);
     console.log(req.params.EMAIL);

@@ -55,7 +55,7 @@ export class UsersService {
     fd.append('USR_NAME', user.USR_NAME || '');
     fd.append('EMAIL', user.EMAIL || '');
 
-    return this.http.post(`${this.API_URI}/users/forgotpass`,user);
+    return this.http.post(`${this.API_URI}/users/forgotpass`,fd);
   }
 
 
