@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { DomSanitizer } from '@angular/platform-browser';
 import { UsersService } from '../../../services/users.service';
 import Swal from 'sweetalert2'
-import { recover } from 'src/app/models/recover';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-forgotpass',
@@ -15,7 +15,7 @@ import { recover } from 'src/app/models/recover';
 export class ForgotpassComponent implements OnInit {
 
   formusr!: FormGroup; //Formulario reactivo 
-  userrec!: recover; 
+  user!: User; //Modelo que se enviará al servidor
   constructor(private formBuilder:FormBuilder, private userService: UsersService, private sanitizer: DomSanitizer) {
     this.usrform();
    }
@@ -52,12 +52,18 @@ export class ForgotpassComponent implements OnInit {
       cancelButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-
-        this.userrec = {
+        this.user= {
           USR_NAME: value.USR_NAME,
           EMAIL: value.EMAIL,
         };
-        this.userService.rescuePass(this.userrec);
+        this.userService.rescuePass(this.user)
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => console.log(err)
+        )
+        
 
         Swal.fire({
           title: 'Compruebe su bandeja de correo electrónico',

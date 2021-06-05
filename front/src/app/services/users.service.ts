@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '../models/User'
 import { Observable } from 'rxjs';
-import { recover } from '../models/recover';
 
 @Injectable({
   providedIn: 'root'
@@ -50,12 +49,9 @@ export class UsersService {
     return this.http.get(`${this.API_URI}/users/verify/${email}`);
   }
 
-  rescuePass(user: recover): Observable<recover> {
-    const fd = new FormData();
-    fd.append('USR_NAME', user.USR_NAME || '');
-    fd.append('EMAIL', user.EMAIL || '');
-
-    return this.http.post(`${this.API_URI}/users/forgotpass`,fd);
+  rescuePass(user: User): Observable<User> {
+   
+    return this.http.post(`${this.API_URI}/users/forgotpass`, user);
   }
 
 

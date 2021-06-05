@@ -108,8 +108,8 @@ class UserController {
     //Se ejecuta la query para restablecer la contrasna de  un usuario por su email
     recoverPass(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body.EMAIL);
-            console.log(req.params.EMAIL);
+            console.log('USR_NAME: ' + req.body.USR_NAME);
+            console.log('EMAIL: ' + req.body.EMAIL);
         });
     }
 }
