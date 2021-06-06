@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersController = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const fs_1 = __importDefault(require("fs"));
 const database_1 = __importDefault(require("../database"));
 //Se definen lo que realizarán las peticiones 
 class UserController {
@@ -56,13 +57,38 @@ class UserController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE users set ? WHERE ID_USR = ?', [req.body, id], function (err, result, fields) {
-                if (err)
-                    throw err;
-                if (result.affectedRows == 1) {
-                    return res.json({ message: 'El usuario fue actualizado' });
-                }
-                res.status(404).json({ message: 'Usuario no encontrado' });
+            //Se obtiene primero la ruta de la foto actual para eliminarla
+            yield database_1.default.query('SELECT PHOTO FROM users WHERE ID_USR = ?', [id], function (err, result, fields) {
+                return __awaiter(this, void 0, void 0, function* () {
+                    if (err)
+                        throw err;
+                    if (result[0]) { //Si existe el usairo
+                        if (result[0].PHOTO) { //Si existe la foto
+                            const pathPhoto = result[0].PHOTO; //Se alamacena la ruta de la foto
+                            fs_1.default.unlinkSync(pathPhoto); //Se elimina la foto 
+                        }
+                        if (req.file) { //Si la foto existe 
+                            req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+                        }
+                        else {
+                            req.body.PHOTO = '';
+                        }
+                        //Se ejecuta la query para actualizar al usario
+                        yield database_1.default.query('UPDATE users set ? WHERE ID_USR = ?', [req.body, id], function (err, result, fields) {
+                            if (err)
+                                throw err;
+                            if (result.affectedRows == 1) {
+                                res.json({ message: 'El usuario fue actualizado' });
+                            }
+                            else {
+                                res.status(404).json({ message: 'Usuario no encontrado' });
+                            }
+                        });
+                    }
+                    else {
+                        res.status(404).json({ message: 'Usuario no encontrado' });
+                    }
+                });
             });
         });
     }
@@ -70,13 +96,27 @@ class UserController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            //Se obtiene primero la ruta de la foto para eliminarla
+            yield database_1.default.query('SELECT PHOTO FROM users WHERE ID_USR = ?', [id], function (err, result, fields) {
+                if (err)
+                    throw err;
+                if (result[0]) { //Si existe el usairo
+                    if (result[0].PHOTO) { //Si existe la foto
+                        const pathPhoto = result[0].PHOTO; //Se alamacena la ruta de la foto
+                        fs_1.default.unlinkSync(pathPhoto); //Se elimina la foto 
+                    }
+                }
+            });
+            //Consulta para eleiminar al usuairo 
             yield database_1.default.query('DELETE FROM users WHERE ID_USR = ?', [id], function (err, result, fields) {
                 if (err)
                     throw err;
                 if (result.affectedRows == 1) {
-                    return res.json({ message: 'El usuario fue eliminado' });
+                    res.json({ message: 'El usuario fue eliminado' });
                 }
-                res.status(404).json({ message: 'Usuario no encontrado' });
+                else {
+                    res.status(404).json({ message: 'Usuario no encontrado' });
+                }
             });
         });
     }
