@@ -2,8 +2,9 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
-import indexRoutes from './routes/indexRoutes';
 import usersRoutes from './routes/usersRoutes';
+import diseasesRoutes from './routes/diseasesRoutes';
+import patientsRoutes from './routes/patientsRoutes';
 
 class Server{
   public app: Application; //Se define el servidor en la variable app
@@ -22,8 +23,9 @@ class Server{
     this.app.use('/uploads', express.static(path.resolve('uploads'))); //El navegador puede acceder a uploads
   }
   routes(): void{
-    this.app.use(indexRoutes); //No se está usando
     this.app.use('/api/users',usersRoutes) //ruta para trabajar con la tabla usrs de la base de datos
+    this.app.use('/api/diseases',diseasesRoutes) //ruta para trabajar con la tabla diseases de la base de datos
+    this.app.use('/api/patients',patientsRoutes); //ruta para trabajar con la tabla patients y medical_ history
   }
   start(): void{ //El servidor se pone a la escucha
     this.app.listen(this.app.get('port'), ()=> {

@@ -7,8 +7,9 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
-const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const usersRoutes_1 = __importDefault(require("./routes/usersRoutes"));
+const diseasesRoutes_1 = __importDefault(require("./routes/diseasesRoutes"));
+const patientsRoutes_1 = __importDefault(require("./routes/patientsRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default(); //Se ejecuta el servidor con la función express()
@@ -25,8 +26,9 @@ class Server {
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads'))); //El navegador puede acceder a uploads
     }
     routes() {
-        this.app.use(indexRoutes_1.default); //No se está usando
         this.app.use('/api/users', usersRoutes_1.default); //ruta para trabajar con la tabla usrs de la base de datos
+        this.app.use('/api/diseases', diseasesRoutes_1.default); //ruta para trabajar con la tabla diseases de la base de datos
+        this.app.use('/api/patients', patientsRoutes_1.default); //ruta para trabajar con la tabla patients y medical_ history
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

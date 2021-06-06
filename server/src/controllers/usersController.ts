@@ -2,6 +2,7 @@ import bcryptjs  from 'bcryptjs';
 
 import { Request, Response } from 'express';
 import { transporter } from './../config/mailer';
+import fs from 'fs';
 
 import pool from '../database';
 //Se definen lo que realizarán las peticiones 
@@ -50,21 +51,54 @@ class UserController{
   //Se ejecuta la query para actualizar un usuario por su id
   public async update (req: Request, res: Response): Promise<any>{
     const { id } = req.params;
-    await pool.query('UPDATE users set ? WHERE ID_USR = ?', [req.body, id],function(err, result, fields) {
+    //Se obtiene primero la ruta de la foto actual para eliminarla
+    await pool.query('SELECT PHOTO FROM users WHERE ID_USR = ?', [id],async function(err, result, fields) {
       if (err) throw err;
-      if(result.affectedRows==1){
-        return res.json({message: 'El usuario fue actualizado'});
+      if(result[0]){ //Si existe el usairo
+        if(result[0].PHOTO){//Si existe la foto
+          const pathPhoto = result[0].PHOTO; //Se alamacena la ruta de la foto
+          fs.unlinkSync(pathPhoto); //Se elimina la foto 
+        }
+        if(req.file){ //Si la foto existe 
+          req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
+        }else{
+          req.body.PHOTO = '';
+        }
+        //Se ejecuta la query para actualizar al usario
+        await pool.query('UPDATE users set ? WHERE ID_USR = ?', [req.body, id],function(err, result, fields) {
+          if (err) throw err;
+          if(result.affectedRows==1){
+            res.json({message: 'El usuario fue actualizado'});
+          }else{
+            res.status(404).json({message: 'Usuario no encontrado'});
+          }
+        });
+      }else{
+        res.status(404).json({message: 'Usuario no encontrado'});
       }
-      res.status(404).json({message: 'Usuario no encontrado en update'});
-    });
+    }); 
   }
   //Se ejecuta la query para eliminar un usuario por su id
   public async delete (req: Request, res: Response): Promise<any>{
     const { id } = req.params;
+    //Se obtiene primero la ruta de la foto para eliminarla
+    await pool.query('SELECT PHOTO FROM users WHERE ID_USR = ?', [id],function(err, result, fields) {
+      if (err) throw err;
+      if(result[0]){ //Si existe el usairo
+        if(result[0].PHOTO){//Si existe la foto
+          const pathPhoto = result[0].PHOTO; //Se alamacena la ruta de la foto
+          fs.unlinkSync(pathPhoto); //Se elimina la foto 
+        }
+      }
+    });
+    //Consulta para eleiminar al usuairo 
     await pool.query('DELETE FROM users WHERE ID_USR = ?', [id],function(err, result, fields) {
       if (err) throw err;
       if(result.affectedRows==1){
-        return res.json({message: 'El usuario fue eliminado'});
+        res.json({message: 'El usuario fue eliminado'});
+      }
+      else{
+        res.status(404).json({message: 'Usuario no encontrado'}); 
       }
       res.status(404).json({message: 'Usuario no encontrado en delete'});
     });
