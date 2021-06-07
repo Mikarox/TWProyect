@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import { usersController } from '../controllers/usersController';
 
-import multer from '../libs/multer';
+import multer from '../libs/multerUser';
 
 //Ruta para trabajar con la tabla usrs de la base de datos
 class UsersRoutes{
@@ -15,10 +15,10 @@ class UsersRoutes{
     this.router.get('/', usersController.list); //listar todos los usuarios
     this.router.get('/:id', usersController.getOne); //mostrar un usuario por su id
     this.router.post('/', multer.single('PHOTO'),usersController.register); //registrar un usuario
-    this.router.put('/:id', usersController.update); //actualizar un usuario por su id
     this.router.post('/forgotpass', usersController.recoverPass);
     this.router.get('/verify/:email', usersController.validate); //valida el usuario en la base de datos
-    this.router.delete('/:id', usersController.delete); // eliminar un usuario por su id
+    this.router.put('/:id',multer.single('PHOTO'), usersController.update); //actualizar un usuario por su id
+    this.router.delete('/:id', usersController.delete); //eliminar un usuario por su id
   }
 }
 
