@@ -35,11 +35,11 @@ import { UsraddComponent } from './componentes/pages/usradd/usradd.component';
 import { ConsulthistoryComponent } from './componentes/pages/consulthistory/consulthistory.component';
 import { ConsultplayComponent } from './componentes/pages/consultplay/consultplay.component';
 import { PrescriptsviewComponent } from './componentes/pages/prescriptsview/prescriptsview.component';
-import { LoginService } from './services/login.service';
-import { UsersService } from './services/users.service';
 import { VerifyComponent } from './componentes/pages/verify/verify.component';
 import { RegistroComponent } from './componentes/pages/registro/registro.component';
 import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass.component';
+//Servicios
+import { UsersService } from './services//users_service/users.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +77,6 @@ import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass
     FormsModule
   ],
   providers: [
-    LoginService, 
     UsersService
   ],
   bootstrap: [AppComponent]

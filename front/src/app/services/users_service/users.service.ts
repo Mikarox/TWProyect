@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../models/User'
+import { User } from '../../models/User'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -40,6 +40,12 @@ export class UsersService {
     fd.append('PHOTO', user.PHOTO || '')
 
     return this.http.post(`${this.API_URI}/users/`, fd);
+  }
+  verifyName(name: string){
+    return this.http.get(`${this.API_URI}/users/verify-userName/${name}`);
+  }
+  verifyEmail(email: string){
+    return this.http.get(`${this.API_URI}/users/verify-userEmail/${email}`);
   }
   updateUser(id: string, updateUser: User): Observable<User>{
     return this.http.put(`${this.API_URI}/users/${id}`, updateUser);

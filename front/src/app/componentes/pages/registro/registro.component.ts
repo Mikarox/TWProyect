@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { debounceTime } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { ClavesCuenta } from 'src/app/models/ClavesCuenta';
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from '../../../services/users_service/users.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -34,7 +34,9 @@ export class RegistroComponent implements OnInit {
   claveCuenta: string = '0';//El tipo de usario que se enviará 
   claves= new ClavesCuenta();
   msjNoValido: boolean = false; //Para encontrar coincidencias en las claves
-
+  //Para buscar coincidencias en la base de datos  
+  existeUsrName: boolean = false;
+  existeEmail: boolean = false;
 
   constructor(private formBuilder:FormBuilder, private userService: UsersService, private sanitizer: DomSanitizer) { 
     this.buildForm();
@@ -42,7 +44,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   private buildForm() {
     this.form = this.formBuilder.group({
       KEY: ['',],
@@ -63,7 +65,7 @@ export class RegistroComponent implements OnInit {
     //Evaluación reactiva
     this.form.valueChanges
     .pipe(
-      debounceTime(1)
+      debounceTime(500)
     )
     .subscribe(value => {
       //Busca coincidencias en las contraseñas
@@ -92,6 +94,33 @@ export class RegistroComponent implements OnInit {
       }
       if(value.KEY.replace(/\s/g, '') == ''){
         this.msjNoValido=false;
+      }
+      //Verificar si existen coincidencias en la base de datos 
+      if(value.USR_NAME){
+        this.userService.verifyName(value.USR_NAME)
+        .subscribe(
+          res => {
+            if(JSON.parse(JSON.stringify(res)).message =='Existe'){
+              this.existeUsrName=true;
+            }else if(JSON.parse(JSON.stringify(res)).message=='No existe'){
+              this.existeUsrName=false;
+            }
+          },
+          err => console.log(err)
+        )
+      }
+      if(value.EMAIL){
+        this.userService.verifyEmail(value.EMAIL)
+        .subscribe(
+          res => {
+            if(JSON.parse(JSON.stringify(res)).message =='Existe'){
+              this.existeEmail=true;
+            }else if(JSON.parse(JSON.stringify(res)).message=='No existe'){
+              this.existeEmail=false;
+            }
+          },
+          err => console.log(err)
+        )
       }
     });
   }

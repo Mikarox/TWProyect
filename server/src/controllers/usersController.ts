@@ -115,6 +115,37 @@ class UserController{
       res.status(404).json({message: 'Correo INVALIDO, NO VALIDADO'});
     });
   }
+
+  public async existUsrName(req: Request, res: Response): Promise<any>{
+    if(req.params){
+      const { usrName } = req.params;
+      await pool.query('SELECT * FROM users WHERE USR_NAME = ?', [usrName],function(err, result, fields) {
+        if (err) throw err;
+        if(result.length>0){
+          return res.json({message: 'Existe'});
+        }
+        return res.json({message: 'No existe'});
+      })  
+    }
+    else{
+      return res.json({message: 'No existe'});
+    }
+  }
+  public async existUsrEmial(req: Request, res: Response): Promise<any>{
+    if(req.params){
+      const { usrEmail } = req.params;
+      await pool.query('SELECT * FROM users WHERE EMAIL = ?', [usrEmail],function(err, result, fields) {
+        if (err) throw err;
+        if(result.length>0){
+          return res.json({message: 'Existe'});
+        }
+        return res.json({message: 'No existe'});
+      })  
+    }
+    else{
+      return res.json({message: 'No existe'});
+    }
+  }
 }
 
 export const usersController = new UserController();

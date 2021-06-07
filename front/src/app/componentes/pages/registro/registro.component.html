@@ -6,23 +6,26 @@
       <form [formGroup]="form" (ngSubmit)="save($event)" enctype="multipart/form-data">
         <div class="container ">
           <div class="row">
-            <p class="separador text-center">Datos de la cuenta</p>
+            <p class="separador text-center"><i class="fas fa-id-card-alt"></i> Datos de la cuenta</p>
             <div class="col-sm-12 col-md-12 col-lg-4">
               <div class="mb-3">
                 <input type="text" class="form-control" name="USR_NAME" formControlName="USR_NAME"  placeholder="Usuario" autofocus>
                 <!-- Directiva para mostrar mensajes reactivos -->
-                <div *ngIf="form.get('USR_NAME')!.errors && form.get('USR_NAME')!.touched">
+                <div *ngIf="form.get('USR_NAME')!.errors && form.get('USR_NAME')!.touched || existeUsrName">
                   <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('maxlength')">
-                    Máximo 12 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 12 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('minlength')">
-                    Mínimo 4 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 4 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('pattern')">
-                    Este campo no acepta espacios
+                    <i class="fas fa-times-circle"></i> Este campo no acepta espacios
+                  </p>
+                  <p class="msjErr" *ngIf="existeUsrName">
+                    <i class="fas fa-times-circle"></i> Éste nombre ya está siendo utilizado
                   </p>
                 </div>
               </div>        
@@ -33,16 +36,16 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('USR_PASSW')!.errors && form.get('USR_PASSW')!.touched">
                   <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('maxlength')">
-                    Máximo 12 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 12 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('minlength')">
-                    Mínimo 4 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 4 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('pattern')">
-                    Este campo no acepta espacios 
+                    <i class="fas fa-times-circle"></i> Este campo no acepta espacios 
                   </p>
                 </div>
               </div>        
@@ -53,10 +56,10 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('PASSW_CONF')!.errors && form.get('PASSW_CONF')!.touched || match">
                   <p class="msjErr" *ngIf="form.get('PASSW_CONF')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="match">
-                    Las contraseñas no coinciden
+                    <i class="fas fa-times-circle"></i> Las contraseñas no coinciden
                   </p>
                 </div>
               </div>        
@@ -78,28 +81,28 @@
               </div> 
               <!-- Directiva para mostrar mensajes reactivos -->    
               <p class="msjErr" *ngIf="msjNoValido">
-                Clave no valida
+                <i class="fas fa-times-circle"></i> Clave no valida
               </p>  
             </div>
           </div><p class="salto"></p>
           <div class="row">
-            <p class="separador">Datos personales</p>
+            <p class="separador text-center"><i class="fas fa-user"></i> Datos personales</p>
             <div class="col-sm-12 col-md-12 col-lg-6">
               <div class="mb-3">
                 <input type="text" class="form-control" name="NAME" formControlName="NAME" placeholder="Nombre(s)">
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('NAME')!.errors && form.get('NAME')!.touched">
                   <p class="msjErr" *ngIf="form.get('NAME')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('NAME')!.hasError('maxlength')">
-                    Máximo 50 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 50 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('NAME')!.hasError('minlength')">
-                    Mínimo 3 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 3 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('NAME')!.hasError('pattern')">
-                    Este campo solo acepta letras
+                    <i class="fas fa-times-circle"></i> Este campo solo acepta letras
                   </p>
                 </div>
               </div>        
@@ -110,16 +113,16 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('LASTNAME')!.errors && form.get('LASTNAME')!.touched">
                   <p class="msjErr" *ngIf="form.get('LASTNAME')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('LASTNAME')!.hasError('maxlength')">
-                    Máximo 50 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 50 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('LASTNAME')!.hasError('minlength')">
-                    Mínimo 3 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 3 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('LASTNAME')!.hasError('pattern')">
-                    Este campo solo acepta letras
+                    <i class="fas fa-times-circle"></i> Este campo solo acepta letras
                   </p>
                 </div>
               </div>        
@@ -132,30 +135,33 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('BIRTH')!.errors && form.get('BIRTH')!.touched">
                   <p class="msjErr" *ngIf="form.get('BIRTH')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                 </div>
               </div>        
             </div>
           </div>
           <div class="row">
-            <p class="separador text-center">Medios de contacto</p>
+            <p class="separador text-center"><i class="fas fa-envelope"></i> Medios de contacto</p>
             <div class="col-sm-12 col-md-12 col-lg-6">
               <div class="mb-3">
                 <input type="email" class="form-control" name="EMAIL" formControlName="EMAIL" placeholder="Correo electrónico">
                 <!-- Directiva para mostrar mensajes reactivos -->
-                <div *ngIf="form.get('EMAIL')!.errors && form.get('EMAIL')!.touched">
+                <div *ngIf="form.get('EMAIL')!.errors && form.get('EMAIL')!.touched || existeEmail">
                   <p class="msjErr" *ngIf="form.get('EMAIL')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('EMAIL')!.hasError('maxlength')">
-                    Máximo de 50 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo de 50 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('EMAIL')!.hasError('minlength')">
-                    Mínimo de 8 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo de 8 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('EMAIL')!.hasError('email')">
-                    No es una dirección de correo valida
+                    <i class="fas fa-times-circle"></i> No es una dirección de correo valida
+                  </p>
+                  <p class="msjErr" *ngIf="existeEmail">
+                    <i class="fas fa-times-circle"></i> Éste correo ya está siendo utilizado
                   </p>
                 </div>
               </div>        
@@ -166,23 +172,23 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('PHONE')!.errors && form.get('PHONE')!.touched">
                   <p class="msjErr" *ngIf="form.get('PHONE')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('PHONE')!.hasError('maxlength')">
-                    Máximo 12 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 12 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('PHONE')!.hasError('minlength')">
-                    Mínimo 3 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 3 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('PHONE')!.hasError('pattern')">
-                    Este campo acepta solo números
+                    <i class="fas fa-times-circle"></i> Este campo acepta solo números
                   </p>
                 </div>
               </div>        
             </div>
           </div>
           <div class="row">
-            <p class="separador text-center">Dirección</p>
+            <p class="separador text-center"><i class="fas fa-home"></i> Dirección</p>
             <div class="col-sm-12 col-md-12 col-lg-3">
               <div class="mb-3">
                 <select
@@ -196,7 +202,7 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('COUNTRY')!.errors && form.get('COUNTRY')!.touched">
                   <p class="msjErr" *ngIf="form.get('COUNTRY')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                 </div>
               </div>        
@@ -207,13 +213,13 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('STREET')!.errors && form.get('STREET')!.touched">
                   <p class="msjErr" *ngIf="form.get('STREET')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('STREET')!.hasError('maxlength')">
-                    Máximo 50 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 50 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('STREET')!.hasError('minlength')">
-                    Mínimo 4 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 4 caracteres
                   </p>
                 </div>
               </div>        
@@ -224,13 +230,13 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('CITY')!.errors && form.get('CITY')!.touched">
                   <p class="msjErr" *ngIf="form.get('CITY')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('CITY')!.hasError('maxlength')">
-                    Máximo 30 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 30 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('CITY')!.hasError('minlength')">
-                    Mínimo 4 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 4 caracteres
                   </p>
                 </div>
               </div>        
@@ -243,23 +249,23 @@
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('POSTCODE')!.errors && form.get('POSTCODE')!.touched">
                   <p class="msjErr" *ngIf="form.get('POSTCODE')!.hasError('required')">
-                    Este campo es requerido
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
                   </p>
                   <p class="msjErr" *ngIf="form.get('POSTCODE')!.hasError('maxlength')">
-                    Máximo 8 caracteres
+                    <i class="fas fa-times-circle"></i> Máximo 8 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('POSTCODE')!.hasError('minlength')">
-                    Mínimo 5 caracteres
+                    <i class="fas fa-times-circle"></i> Mínimo 5 caracteres
                   </p>
                   <p class="msjErr" *ngIf="form.get('POSTCODE')!.hasError('pattern')">
-                    Este campo acepta solo números
+                    <i class="fas fa-times-circle"></i> Este campo acepta solo números
                   </p>
                 </div>
               </div>        
             </div>
           </div>
           <div class="row">
-            <p class="separador text-center">Foto de perfil (Campo no obligatorio)</p>
+            <p class="separador text-center"><i class="fas fa-camera"></i> Foto de perfil (Campo no obligatorio)</p>
             <div class="col-sm-12 col-md-8 col-lg-9">
               <div class="mb-3">
                 <input type="file" accept="image/*" class="form-control" name="PHOTO" formControlName="PHOTO" (change)="capturarFile($event)">
@@ -280,7 +286,7 @@
             </ng-template>
           </div>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-lg">Enviar Registro</button>
+            <button type="submit" [disabled]="form.invalid || !(!match && !existeUsrName && !existeEmail)" class="btn btn-primary btn-lg">Enviar Registro</button>
           </div>
           <br>  
         </div>

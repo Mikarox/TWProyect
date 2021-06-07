@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from '../../../services/users_service/users.service';
 
 @Component({
   selector: 'app-verify',

@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersController = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const mailer_1 = require("./../config/mailer");
 const fs_1 = __importDefault(require("fs"));
 const database_1 = __importDefault(require("../database"));
 //Se definen lo que realizarán las peticiones 
@@ -127,7 +128,58 @@ class UserController {
                 else {
                     res.status(404).json({ message: 'Usuario no encontrado' });
                 }
+                res.status(404).json({ message: 'Usuario no encontrado en delete' });
             });
+        });
+    }
+    //Se ejecuta la query para registrare un usuario por su email
+    validate(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            yield database_1.default.query('UPDATE users set IS_REG="1" WHERE EMAIL = ?', [email], function (err, result, fields) {
+                if (err)
+                    throw err;
+                if (result.affectedRows == 1) {
+                    return res.json({ message: 'El usuario fue validado correctamente' });
+                }
+                res.status(404).json({ message: 'Correo INVALIDO, NO VALIDADO' });
+            });
+        });
+    }
+    existUsrName(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (req.params) {
+                const { usrName } = req.params;
+                yield database_1.default.query('SELECT * FROM users WHERE USR_NAME = ?', [usrName], function (err, result, fields) {
+                    if (err)
+                        throw err;
+                    if (result.length > 0) {
+                        return res.json({ message: 'Existe' });
+                    }
+                    return res.json({ message: 'No existe' });
+                });
+            }
+            else {
+                return res.json({ message: 'No existe' });
+            }
+        });
+    }
+    existUsrEmial(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (req.params) {
+                const { usrEmail } = req.params;
+                yield database_1.default.query('SELECT * FROM users WHERE EMAIL = ?', [usrEmail], function (err, result, fields) {
+                    if (err)
+                        throw err;
+                    if (result.length > 0) {
+                        return res.json({ message: 'Existe' });
+                    }
+                    return res.json({ message: 'No existe' });
+                });
+            }
+            else {
+                return res.json({ message: 'No existe' });
+            }
         });
     }
 }
