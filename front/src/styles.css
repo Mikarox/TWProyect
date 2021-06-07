@@ -16,10 +16,13 @@ ol {
     list-style-type: none;
 }
 
+.navbar{
+  z-index: 1;
+}
+
 .login{
     width: 500px;
-    height: 450px;
-    z-index: 1;
+    z-index: 2;
 }
 
 
@@ -137,6 +140,7 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+  z-index: 3;
 }
 
 #formContent {
@@ -145,12 +149,13 @@ h2 {
   background: #3982ca;
   padding: 30px;
   width: 90%;
-  max-width: 450px;
+  max-width: 560px;
   position: relative;
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
+  z-index: 4;
 }
 
 #formFooter {

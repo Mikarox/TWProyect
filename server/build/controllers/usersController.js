@@ -110,6 +110,7 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log('USR_NAME: ' + req.body.USR_NAME);
             console.log('EMAIL: ' + req.body.EMAIL);
+            //validate 
         });
     }
 }

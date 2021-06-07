@@ -54,6 +54,11 @@ export class UsersService {
     return this.http.post(`${this.API_URI}/users/forgotpass`, user);
   }
 
+  login(user: User): Observable<User> {
+   
+    return this.http.post(`${this.API_URI}/users/login`, user);
+  }
+
 
 
 

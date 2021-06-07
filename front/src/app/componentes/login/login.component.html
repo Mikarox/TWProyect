@@ -1,11 +1,49 @@
 <div class="wrapper fadeInDown ">
   <div id="formContent">
-      <!-- Login Form -->
-    <form >
+    <!-- Login Form -->
+    <form [formGroup]="form" (ngSubmit)="sendlogin($event)">
       <br>
-      <input type="text"  id="login" class="fadeIn second" name="login" placeholder="Usuario">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contrasena">
-      <input type="submit" class="fadeIn fourth" value="Entrar">
+      <div class="mb-3">
+        <input type="text" class="form-control" name="USR_NAME" formControlName="USR_NAME" placeholder="Usuario"
+          autofocus>
+        <!-- Directiva para mostrar mensajes reactivos -->
+        <div *ngIf="form.get('USR_NAME')!.errors && form.get('USR_NAME')!.touched">
+          <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('required')">
+            Este campo es requerido
+          </p>
+          <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('maxlength')">
+            Máximo 12 caracteres
+          </p>
+          <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('minlength')">
+            Mínimo 4 caracteres
+          </p>
+          <p class="msjErr" *ngIf="form.get('USR_NAME')!.hasError('pattern')">
+            Este campo no acepta espacios
+          </p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="USR_PASSW" formControlName="USR_PASSW"
+          placeholder="Contraseña">
+        <!-- Directiva para mostrar mensajes reactivos -->
+        <div *ngIf="form.get('USR_PASSW')!.errors && form.get('USR_PASSW')!.touched">
+          <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('required')">
+            Este campo es requerido
+          </p>
+          <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('maxlength')">
+            Máximo 12 caracteres
+          </p>
+          <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('minlength')">
+            Mínimo 4 caracteres
+          </p>
+          <p class="msjErr" *ngIf="form.get('USR_PASSW')!.hasError('pattern')">
+            Este campo no acepta espacios
+          </p>
+        </div>
+      </div>
+
+
+      <input type="submit" [disabled]="form.invalid"  class="fadeIn fourth" value="Entrar">
     </form>
 
     <!-- Remind Passowrd -->
@@ -13,6 +51,6 @@
       <a class="underlineHover" routerLink="forgotpass">¿Olvidaste tu contraseña?</a>
       <a class="underlineHover" routerLink="registro" routerLinkActive="active">¿Aún no estás registrado?</a>
     </div>
-   
+
   </div>
 </div>
