@@ -14,4 +14,6 @@ export interface User{
   CITY?: string;
   POSTCODE?: string;
   PHOTO?: File; 
+  IS_REG?: string;
+  WANTS_CONS?: string;
 }

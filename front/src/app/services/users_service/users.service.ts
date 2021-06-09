@@ -37,7 +37,9 @@ export class UsersService {
     fd.append('STREET', user.STREET || '');
     fd.append('CITY', user.CITY || '');
     fd.append('POSTCODE', user.POSTCODE || '');
-    fd.append('PHOTO', user.PHOTO || '')
+    fd.append('PHOTO', user.PHOTO || ''),
+    fd.append('IS_REG', user.IS_REG || ''),
+    fd.append('WANTS_CONS', user.WANTS_CONS || '')
 
     return this.http.post(`${this.API_URI}/users/`, fd);
   }

@@ -46,19 +46,22 @@ class UserController {
     //Se ejecuta la query para registrar un usuario
     register(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body);
             if (req.file) { //Si la foto existe 
                 req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
             }
             let page = `<b>deveria enviar un botton para </b> <br> 
     <a href="http://localhost:4200/verify/` + req.body.EMAIL + `">verificar cuenta</a>
     `;
-            yield mailer_1.transporter.sendMail({
-                from: '"Verify Acount👻<' + req.body.NAME + " " + req.body.LASTNAME + ' Hospital@isc6to.com>"',
-                to: req.body.EMAIL,
-                subject: "Hello, did you create a acount? ✔",
-                text: "Please verify account",
-                html: page, // html body
-            });
+            if (req.body.IS_REG == "0") {
+                yield mailer_1.transporter.sendMail({
+                    from: '"Verify Acount👻<' + req.body.NAME + " " + req.body.LASTNAME + ' Hospital@isc6to.com>"',
+                    to: req.body.EMAIL,
+                    subject: "Hello, did you create a acount? ✔",
+                    text: "Please verify account",
+                    html: page, // html body
+                });
+            }
             req.body.USR_PASSW = yield bcryptjs_1.default.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
             yield database_1.default.query('INSERT INTO users set ?', [req.body]);
             res.json({ message: 'Usario registrado' });
