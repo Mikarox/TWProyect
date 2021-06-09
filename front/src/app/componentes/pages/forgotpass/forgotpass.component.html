@@ -1,0 +1,55 @@
+<app-navindex></app-navindex>
+<div class="wrapper">
+    <form [formGroup]="formusr" (ngSubmit)="senddata($event)">
+        <div class="formContentpass">
+            <div class="justify-content-center">
+                <h1>Olvidaste tu Contraseña</h1>
+                <p>Para recuperarla porfavor introduce tu nombre de usuario y tu correo electronico, si los datos
+                    coinciden
+                    con tu cuenta, <br> se te enviara por correo electronico un enlace para restablecerla</p>
+                <br>
+            </div>
+            <div>
+                <div>
+                    <input type="text" class="form-control" name="USR_NAME" formControlName="USR_NAME"
+                        placeholder="Usuario" autofocus>
+                    <!-- Directiva para mostrar mensajes reactivos -->
+                    <div *ngIf="formusr.get('USR_NAME')!.errors && formusr.get('USR_NAME')!.touched">
+                        <p class="msjErr" *ngIf="formusr.get('USR_NAME')!.hasError('required')">
+                            Este campo es requerido
+                        </p>
+                        <p class="msjErr" *ngIf="formusr.get('USR_NAME')!.hasError('maxlength')">
+                            Máximo 12 caracteres
+                        </p>
+                        <p class="msjErr" *ngIf="formusr.get('USR_NAME')!.hasError('minlength')">
+                            Mínimo 4 caracteres
+                        </p>
+                        <p class="msjErr" *ngIf="formusr.get('USR_NAME')!.hasError('pattern')">
+                            Este campo no acepta espacios
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="EMAIL" formControlName="EMAIL"
+                        placeholder="Correo electrónico">
+                    <!-- Directiva para mostrar mensajes reactivos -->
+                    <div *ngIf="formusr.get('EMAIL')!.errors && formusr.get('EMAIL')!.touched">
+                        <p class="msjErr" *ngIf="formusr.get('EMAIL')!.hasError('required')">
+                            Este campo es requerido
+                        </p>
+                        <p class="msjErr" *ngIf="formusr.get('EMAIL')!.hasError('maxlength')">
+                            Máximo de 50 caracteres
+                        </p>
+                        <p class="msjErr" *ngIf="formusr.get('EMAIL')!.hasError('minlength')">
+                            Mínimo de 8 caracteres
+                        </p>
+                        <p class="msjErr" *ngIf="formusr.get('EMAIL')!.hasError('email')">
+                            No es una dirección de correo valida
+                        </p>
+                    </div>
+                </div>
+                <input type="submit" [disabled]="formusr.invalid" class="fadeIn fourth" value="Restablecer Contraseña">
+            </div>
+        </div>
+    </form>
+</div>

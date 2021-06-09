@@ -12,4 +12,10 @@ export class NavusrComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+  logout(){
+    localStorage.removeItem('sesion');
+    location.replace('/');
+  }
+
 }

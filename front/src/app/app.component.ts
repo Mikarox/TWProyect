@@ -1,5 +1,7 @@
 import { Component, } from '@angular/core';
 
+import { User } from 'src/app/models/User';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +9,17 @@ import { Component, } from '@angular/core';
 })
 export class AppComponent {
   title = 'proyect';
+  user!: User;
 
+  ngOnInit(): void {
+    
+  }
+
+  constructor(){
+    
+  }
+
+  
 
 }
 

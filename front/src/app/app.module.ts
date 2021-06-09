@@ -37,7 +37,7 @@ import { ConsultplayComponent } from './componentes/pages/consultplay/consultpla
 import { PrescriptsviewComponent } from './componentes/pages/prescriptsview/prescriptsview.component';
 import { VerifyComponent } from './componentes/pages/verify/verify.component';
 import { RegistroComponent } from './componentes/pages/registro/registro.component';
-import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass.component';
+import { ForgotpassComponent } from './componentes/pages/forgotpass/forgotpass.component';
 //Servicios
 import { UsersService } from './services/users_service/users.service';
 import { DiseasesService } from './services/diseases_service/diseases.service';
@@ -69,7 +69,7 @@ import { PatientsService } from './services/patients_service/patients.service';
     PrescriptsviewComponent,
     VerifyComponent,
     RegistroComponent,
-    ForgotPassComponent
+    ForgotpassComponent
   ],
   imports: [
     BrowserModule,

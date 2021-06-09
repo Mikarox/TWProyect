@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/User';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-diseseslist',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiseseslistComponent implements OnInit {
 
-  constructor() { }
+  user!: User;
 
   ngOnInit(): void {
+    if (localStorage.getItem('sesion')) {
+      $("#navindex").hide();
+    }
   }
 
 }

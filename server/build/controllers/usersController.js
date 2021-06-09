@@ -135,6 +135,48 @@ class UserController {
             });
         });
     }
+    //Se ejecuta la query para validar un usuario por su email
+    validate(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            yield database_1.default.query('UPDATE users set IS_REG="1" WHERE EMAIL = ?', [email], function (err, result, fields) {
+                if (err)
+                    throw err;
+                if (result.affectedRows == 1) {
+                    return res.json({ message: 'El usuario fue validado correctamente' });
+                }
+                res.status(404).json({ message: 'Correo INVALIDO, NO VALIDADO' });
+            });
+        });
+    }
+    //Se ejecuta la query para restablecer la contrasna de  un usuario por su email
+    recoverPass(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log('USR_NAME: ' + req.body.USR_NAME);
+            console.log('EMAIL: ' + req.body.EMAIL);
+            //validate 
+        });
+    }
+    login(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('SELECT * FROM users WHERE USR_NAME = ? ', [req.body.USR_NAME], function (err, result, fields) {
+                if (err)
+                    throw err;
+                if (result.length == 1) {
+                    if (bcryptjs_1.default.compareSync(req.body.USR_PASSW, result[0].USR_PASSW)) {
+                        return res.json(result[0]);
+                    }
+                    else {
+                        res.status(404).json({ message: 'Credenciales incorrectas' });
+                    }
+                }
+                else {
+                    res.status(404).json({ message: 'existen varios ==' });
+                }
+                res.status(404).json({ message: 'Credenciales incorrectas' });
+            });
+        });
+    }
     //Se ejecuta la query para registrare un usuario por su email
     validate(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

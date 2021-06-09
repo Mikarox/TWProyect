@@ -10,20 +10,20 @@ import { Observable } from 'rxjs';
 export class UsersService {
   API_URI = 'http://localhost:3000/api' //Como atributo la dirección del servidor
 
-  constructor(private http: HttpClient) { 
-    
+  constructor(private http: HttpClient) {
+
   }
 
-  getUsers(): Observable<User>{
+  getUsers(): Observable<User> {
     return this.http.get(`${this.API_URI}/users`)
   }
-  getUser(id: string): Observable<User>{
+  getUser(id: string): Observable<User> {
     return this.http.get(`${this.API_URI}/users/${id}`);
   }
-  deleteUser(id: string): Observable<User>{
+  deleteUser(id: string): Observable<User> {
     return this.http.delete(`${this.API_URI}/users/${id}`);
   }
-  saveUser(user: User): Observable<User>{  
+  saveUser(user: User): Observable<User> {
     const fd = new FormData();
     fd.append('USR_NAME', user.USR_NAME || '');
     fd.append('USR_PASSW', user.USR_PASSW || '');
@@ -53,7 +53,19 @@ export class UsersService {
     return this.http.put(`${this.API_URI}/users/${id}`, updateUser);
   }
 
-  valityUser(email: string): Observable<User>{
+  valityUser(email: string): Observable<User> {
     return this.http.get(`${this.API_URI}/users/verify/${email}`);
   }
+
+  rescuePass(user: User): Observable<User> {
+    return this.http.post(`${this.API_URI}/users/forgotpass`, user);
+  }
+
+  login(user: User): Observable<User> {
+    return this.http.post(`${this.API_URI}/users/login`, user);
+  }
+
+
+
+
 }
