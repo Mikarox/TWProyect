@@ -18,6 +18,8 @@ class UsersRoutes {
         this.router.post('/', multerUser_1.default.single('PHOTO'), usersController_1.usersController.register); //registrar un usuario
         this.router.post('/forgotpass', usersController_1.usersController.recoverPass);
         this.router.get('/verify/:email', usersController_1.usersController.validate); //valida el usuario en la base de datos
+        this.router.get('/verify-userName/:usrName', usersController_1.usersController.existUsrName); //Validar el nombre de usario
+        this.router.get('/verify-userEmail/:usrEmail', usersController_1.usersController.existUsrEmial); //Validar el correo de usario
         this.router.put('/:id', multerUser_1.default.single('PHOTO'), usersController_1.usersController.update); //actualizar un usuario por su id
         this.router.delete('/:id', usersController_1.usersController.delete); //eliminar un usuario por su id
         this.router.post('/login', usersController_1.usersController.login);

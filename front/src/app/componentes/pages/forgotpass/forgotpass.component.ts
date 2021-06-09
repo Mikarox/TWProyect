@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from '../../../services/users_service/users.service';
 import Swal from 'sweetalert2'
 import { User } from 'src/app/models/User';
 

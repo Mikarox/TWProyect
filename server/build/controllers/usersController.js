@@ -46,7 +46,6 @@ class UserController {
     //Se ejecuta la query para registrar un usuario
     register(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body);
             if (req.file) { //Si la foto existe 
                 req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
             }
@@ -174,20 +173,6 @@ class UserController {
                     res.status(404).json({ message: 'existen varios ==' });
                 }
                 res.status(404).json({ message: 'Credenciales incorrectas' });
-            });
-        });
-    }
-    //Se ejecuta la query para registrare un usuario por su email
-    validate(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { email } = req.params;
-            yield database_1.default.query('UPDATE users set IS_REG="1" WHERE EMAIL = ?', [email], function (err, result, fields) {
-                if (err)
-                    throw err;
-                if (result.affectedRows == 1) {
-                    return res.json({ message: 'El usuario fue validado correctamente' });
-                }
-                res.status(404).json({ message: 'Correo INVALIDO, NO VALIDADO' });
             });
         });
     }
