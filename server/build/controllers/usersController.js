@@ -154,5 +154,25 @@ class UserController {
             //validate 
         });
     }
+    login(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('SELECT * FROM users WHERE USR_NAME = ? ', [req.body.USR_NAME], function (err, result, fields) {
+                if (err)
+                    throw err;
+                if (result.length == 1) {
+                    if (bcryptjs_1.default.compareSync(req.body.USR_PASSW, result[0].USR_PASSW)) {
+                        return res.json(result[0]);
+                    }
+                    else {
+                        res.status(404).json({ message: 'Credenciales incorrectas' });
+                    }
+                }
+                else {
+                    res.status(404).json({ message: 'existen varios ==' });
+                }
+                res.status(404).json({ message: 'Credenciales incorrectas' });
+            });
+        });
+    }
 }
 exports.usersController = new UserController();

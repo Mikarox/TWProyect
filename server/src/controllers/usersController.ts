@@ -126,6 +126,27 @@ class UserController {
     
   }
 
+  public async login(req: Request, res: Response): Promise<any> {
+
+    await pool.query('SELECT * FROM users WHERE USR_NAME = ? ', [req.body.USR_NAME], function (err, result, fields) {
+      if (err) throw err;
+      if (result.length == 1) {
+
+        if(bcryptjs.compareSync(req.body.USR_PASSW, result[0].USR_PASSW) ){
+          return res.json(result[0]);
+        }else {
+          res.status(404).json({message: 'Credenciales incorrectas'});
+        }
+      }
+      else{
+        res.status(404).json({message: 'existen varios =='}); 
+      }
+      res.status(404).json({ message: 'Credenciales incorrectas' });
+    });
+    
+  }
+
+
 }
 
 export const usersController = new UserController();

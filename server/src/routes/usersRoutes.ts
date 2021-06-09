@@ -19,6 +19,7 @@ class UsersRoutes{
     this.router.get('/verify/:email', usersController.validate); //valida el usuario en la base de datos
     this.router.put('/:id',multer.single('PHOTO'), usersController.update); //actualizar un usuario por su id
     this.router.delete('/:id', usersController.delete); //eliminar un usuario por su id
+    this.router.post('/login',usersController.login);
   }
 }
 
