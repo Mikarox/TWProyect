@@ -39,7 +39,9 @@ import { VerifyComponent } from './componentes/pages/verify/verify.component';
 import { RegistroComponent } from './componentes/pages/registro/registro.component';
 import { ForgotPassComponent } from './componentes/pages/forgot-pass/forgot-pass.component';
 //Servicios
-import { UsersService } from './services//users_service/users.service';
+import { UsersService } from './services/users_service/users.service';
+import { DiseasesService } from './services/diseases_service/diseases.service';
+import { PatientsService } from './services/patients_service/patients.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +79,9 @@ import { UsersService } from './services//users_service/users.service';
     FormsModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    DiseasesService,
+    PatientsService
   ],
   bootstrap: [AppComponent]
 })

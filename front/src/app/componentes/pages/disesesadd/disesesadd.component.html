@@ -1,1 +1,194 @@
-<p>disesesadd works!</p>
+<br><br><br>
+<!-- Formulario de registro de enfermedad  -->
+<div class="col-md-8 col-sm-9 offset-md-2 offset-sm-2">
+  <div class="card">
+    <div class="cardd-body"> 
+      <form [formGroup]="form" (ngSubmit)="save($event)" enctype="multipart/form-data">
+        <p class="separador text-center">Registro de enfermedad</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo">Nombre</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4">
+                <input type="text" class="form-control" name="NAME" formControlName="NAME"  placeholder="Nombre común de la enfermedad" autofocus>
+                <!-- Directiva para mostrar mensajes reactivos -->
+                <div *ngIf="form.get('NAME')!.errors && form.get('NAME')!.touched">
+                  <p class="msjErr" *ngIf="form.get('NAME')!.hasError('required')">
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
+                  </p>
+                  <p class="msjErr" *ngIf="form.get('NAME')!.hasError('maxlength')">
+                    <i class="fas fa-times-circle"></i> Máximo 80 caracteres
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo dos">Término médico</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4">
+                <input type="text" class="form-control" name="MEDICAL_TERM" formControlName="MEDICAL_TERM"  placeholder="Denominación clinica de la enfermedad">
+                <!-- Directiva para mostrar mensajes reactivos -->
+                <div *ngIf="form.get('MEDICAL_TERM')!.errors && form.get('MEDICAL_TERM')!.touched">
+                  <p class="msjErr" *ngIf="form.get('MEDICAL_TERM')!.hasError('required')">
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
+                  </p>
+                  <p class="msjErr" *ngIf="form.get('MEDICAL_TERM')!.hasError('maxlength')">
+                    <i class="fas fa-times-circle"></i> Máximo 80 caracteres
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo">Causas</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4">
+                <textarea class="form-control" name="CAUSES" formControlName="CAUSES"  placeholder="Causas más comunes de la enfermedad" rows="3"></textarea>
+                <!-- Directiva para mostrar mensajes reactivos -->
+                <div *ngIf="form.get('CAUSES')!.errors && form.get('CAUSES')!.touched">
+                  <p class="msjErr" *ngIf="form.get('CAUSES')!.hasError('required')">
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo">Síntomas</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4">
+                <textarea class="form-control" name="SYMPTOM" formControlName="SYMPTOM"  placeholder="Síntomas más comunes de la enfermedad" rows="3"></textarea>
+                <!-- Directiva para mostrar mensajes reactivos -->
+                <div *ngIf="form.get('SYMPTOM')!.errors && form.get('SYMPTOM')!.touched">
+                  <p class="msjErr" *ngIf="form.get('SYMPTOM')!.hasError('required')">
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo">Tratamiento</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4">
+                <textarea class="form-control" name="TREATMENT" formControlName="TREATMENT"  placeholder="Tratamientos o terapias de la enfermedad" rows="3"></textarea>
+                <!-- Directiva para mostrar mensajes reactivos -->
+                <div *ngIf="form.get('TREATMENT')!.errors && form.get('TREATMENT')!.touched">
+                  <p class="msjErr" *ngIf="form.get('TREATMENT')!.hasError('required')">
+                    <i class="fas fa-times-circle"></i> Este campo es requerido
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo">Letalidad</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4 mt-0 text-left ">
+                <p class="separador2">Mortalidad a causa de la enfermedad</p>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="LETHALITY" formControlName="LETHALITY" value="Leve">
+                    <label class="form-check-label label1">Leve</label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="LETHALITY" formControlName="LETHALITY" value="Moderada">
+                    <label class="form-check-label label2">Moderada</label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="LETHALITY" formControlName="LETHALITY" value="Severa">
+                    <label class="form-check-label label3">Severa</label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="LETHALITY" formControlName="LETHALITY" value="Extrema">
+                    <label class="form-check-label label4">Extrema</label>                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo dos mt-3">Grupo de riesgo</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4 mt-3 text-left ">
+                <p class="separador2">Grupos demográficos (por edad) más afectados por la enfermedad</p>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-3 checkGroup3">
+                    <input class="form-check-input" type="checkbox" name="RISK_GROUPS" (change)="onCheckChange($event)" value="Bebés y niños" id="check1">
+                    <label class="form-check-label"><i class="fas fa-baby"><i class="fas fa-child"></i></i></label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 checkGroup">
+                    <input class="form-check-input" type="checkbox" name="RISK_GROUPS" (change)="onCheckChange($event)" value="Adultos" id="check2">
+                    <label class="form-check-label"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 checkGroup">
+                    <input class="form-check-input" type="checkbox" name="RISK_GROUPS" (change)="onCheckChange($event)" value="Ancianos" id="check3">
+                    <label class="form-check-label"><img class
+                      ="icon" src="../../../../assets/images/old.svg"></label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 checkGroup2">
+                    <input class="form-check-input" type="checkbox" name="RISK_GROUPS" (change)="onCheckChange($event)" value="Indiferente" id="check4">
+                    <label class="form-check-label">Indiferente</label>                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"><p class="titilo">Frecuencia</p></div> 
+            <div class="col-sm-12 col-md-12 col-lg-9">
+              <div class="mb-4 mt-0 text-left ">
+                <p class="separador2">Recurrencia en los casos reportados por la enfermedad</p>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="RECURRENCE" formControlName="RECURRENCE" value="Raro">
+                    <label class="form-check-label label1 color1">Raro</label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="RECURRENCE" formControlName="RECURRENCE" value="Ocacional">
+                    <label class="form-check-label label2 color2">Ocacional</label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="RECURRENCE" formControlName="RECURRENCE" value="Frecuente">
+                    <label class="form-check-label label3 color3">Frecuente</label>                  
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-3 radioGroup">
+                    <input class="form-check-input" type="radio" name="RECURRENCE" formControlName="RECURRENCE" value="Ordinario">
+                    <label class="form-check-label label4 color4">Ordinario</label>                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <p class="titilo">Imagen ilustrativa (Campo no obligatorio)</p>
+              <div class="mb-4">
+                <input type="file" accept="image/*" class="form-control form-control-sm" name="IMAGE" formControlName="IMAGE" (change)="capturarFile($event)">
+              </div>       
+            </div>
+            <!-- previsualización de imagen de perfil -->
+            <div class="col-sm-12 col-md-4 col-lg-3" *ngIf="previsualizacion; else imagenDefault">
+              <div class="mb-3 d-md-flex justify-content-md-end">
+               <img [src]="previsualizacion" class="perfil">
+              </div>        
+            </div>
+            <ng-template #imagenDefault>
+              <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="mb-3 d-md-flex justify-content-md-end">
+                <img src="../../../../assets/images/enfermo.jpg" class="perfil">
+                </div>        
+              </div>
+            </ng-template>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-lg">Registrar enfermedad</button>
+          </div>
+          <br> 
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br><br>

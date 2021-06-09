@@ -54,8 +54,4 @@ export class UsersService {
   valityUser(email: string): Observable<User>{
     return this.http.get(`${this.API_URI}/users/verify/${email}`);
   }
-
-
-
-
 }

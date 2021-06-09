@@ -1,0 +1,126 @@
+/* titulo que separa las secciones del formulario */
+.separador{
+  background-color: #115e86;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+.titilo{
+   background-color: #F39C12;
+   color: #ffffff;
+   border-radius: 10px;
+   padding: 6px;
+   text-align: center;
+   vertical-align: middle;
+   font-size: 18px;
+   margin-bottom: 4px;
+ }
+ .dos{
+  font-size: 16px !important;
+ }
+ .label1{
+   color: #28B463;
+   font-weight: bold;
+   font-size: 16px;
+   border-color: #16151a;
+ }
+ .label2{
+   color: #F1C40F;
+   font-weight: bold;
+   font-size: 16px;
+ }
+ .label3{
+   color: #E67E22 ;
+   font-weight: bold;
+   font-size: 16px;
+ }
+ .label4{
+   color: #C0392B;
+   font-weight: bold;
+   font-size: 16px;
+ }
+ .radioGroup > input{
+   margin-right: 5px;
+   font-size: 16px;
+ }
+ .checkGroup > input{
+    margin-right: 8px;
+    font-size: 16px;
+     margin-top: 20px;
+ }
+ .checkGroup > label{
+    font-size: 40px;
+ }
+.checkGroup2 > input{
+    margin-right: 8px;
+    font-size: 16px;
+     margin-top: 20px;
+ }
+ .checkGroup2 > label{
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 18px;
+ }
+.checkGroup3 > input{
+    margin-right: 8px;
+    font-size: 16px;
+     margin-top: 20px;
+ }
+.checkGroup3 > label{
+   margin-top: 10px;
+    font-size: 30px;
+ }
+.icon {
+  display: inline-block;
+  width: 45.3px;
+  height: 42.45px;
+  overflow: hidden;
+}
+.color1{
+  color: #1a0080 !important;
+}
+.color2{
+  color: #3366FF !important;
+}
+.color3{
+  color: #2992fcd0 !important;
+}
+.color4{
+  color: #33ccffce !important;
+
+}
+
+.salto{
+  margin-bottom: 15px !important;
+}
+.separador2{
+  display: block;
+  margin: 0px;
+  font-size: 12px;
+  background-color: #F39C12;
+  color: #ffffff;
+  padding: 0px;
+  border-radius: 6px;
+  text-align: center;
+}
+/* mensaje de error indicando campo mal ingresado  */
+.msjErr{
+  display: block;
+  margin: 0px;
+  font-size: 12px;
+  background-color: #FF9494;
+  color: #FFFFFF;
+  padding: 1px;
+  border-radius:  0px 0px 0px 0px;
+  text-align: center;
+}
+/* previsualizacón de foto de perfil */
+.perfil{
+    width:170px;
+    height:170px;
+    border-radius:160px;
+    object-fit: cover;
+    border:5px solid #666;
+}
