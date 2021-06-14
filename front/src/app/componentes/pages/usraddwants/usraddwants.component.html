@@ -5,6 +5,7 @@
     <div class="card-header tituloFormUsr" id='formUsr'>Información de usuario</div> 
     <div class="cardd-body"> 
       <form [formGroup]="form" enctype="multipart/form-data" >
+        <fieldset id="formConfi" disabled>
         <div class="container ">
           <div class="row">
             <p class="separador text-center"><i class="fas fa-id-card-alt"></i> Datos de la cuenta</p>
@@ -32,7 +33,7 @@
               </div>        
             </div>
             <div class="col-sm-12 col-md-12 col-lg-4">
-              <div class="mb-3">
+              <div class="mb-0">
                 <input type="password" class="form-control" name="USR_PASSW" formControlName="USR_PASSW" placeholder="Contraseña" >
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('USR_PASSW')!.errors && form.get('USR_PASSW')!.touched">
@@ -52,7 +53,7 @@
               </div>        
             </div>
             <div class="col-sm-12 col-md-12  col-lg-4 ">
-              <div class="mb-3">
+              <div class="mb-0">
                 <input type="password" class="form-control " name="PASSW_CONF" formControlName="PASSW_CONF" placeholder="Confirme contraseña" >
                 <!-- Directiva para mostrar mensajes reactivos -->
                 <div *ngIf="form.get('PASSW_CONF')!.errors && form.get('PASSW_CONF')!.touched || match">
@@ -65,7 +66,16 @@
                 </div>
               </div>        
             </div>
-          </div>   
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4"></div>
+            <div class="col-sm-12 col-md-12 col-lg-8">
+              <p class="msjInfo ">
+                <i class="fas fa-info-circle"></i> 
+                Por motivos de seguridad no se pueden mostrar estos campos. En caso de dejarlos vacíos se mantendrá la contraseña actual.
+              </p>
+            </div>
+          </div>      
           <div class="row">
             <p class="separador text-center"><i class="fas fa-user"></i> Datos personales</p>
             <div class="col-sm-12 col-md-12 col-lg-6">
@@ -253,11 +263,18 @@
               </div>        
             </div>
             <!-- previsualización de imagen de perfil -->
-            <div class="col-sm-12 col-md-4 col-lg-3" *ngIf="previsualizacion; else imagenDefault">
+            <div class="col-sm-12 col-md-4 col-lg-3" *ngIf="previsualizacion else imagenPrevi">
               <div class="mb-3 d-md-flex justify-content-md-end">
                <img [src]="previsualizacion" class="perfil">
               </div>        
             </div>
+            <ng-template #imagenPrevi>
+              <div class="col-sm-12 col-md-4 col-lg-3" *ngIf="this.usrPhoto else imagenDefault">
+                <div class="mb-3 d-md-flex justify-content-md-end">
+                  <img [src]="'http://localhost:3000/' + this.usrPhoto" class="perfil">
+                </div>        
+              </div>
+            </ng-template>           
             <ng-template #imagenDefault>
               <div class="col-sm-12 col-md-4 col-lg-3">
                 <div class="mb-3 d-md-flex justify-content-md-end">
@@ -267,10 +284,16 @@
             </ng-template>
           </div>
         </div>
+        </fieldset>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center me-3">
+          <button class="btn btn-warning btn-lg" (click)="edit()">Editar</button>
+        </div> 
+        <br>
       </form> 
     </div>
   </div>
 </div>
+<br><br>
 
 <!-- Formulario de registro de paciente============================================================= -->
 <div class="col-md-8 offset-md-2">
@@ -445,9 +468,15 @@
                 <textarea class="form-control" name="NOTES" formControlName="NOTES"  placeholder="Notas médicas a considerar para la consulta" rows="3"></textarea>
               </div>
             </div>
-          </div><br>
+          </div>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" [disabled]="form2.invalid || form.invalid || !(!match && !existeUsrName && !existeEmail)" class="btn btn-primary btn-lg">Guardar registro del paciente</button>       
+            <div *ngIf="formuEditado; else boton2">
+              <button type="submit" [disabled]="form2.invalid || form.invalid || !(!match && !existeUsrName && !existeEmail)" class="btn btn-primary btn-lg">Guardar registro y editar usario</button>       
+            </div>
+            <ng-template #boton2>
+              <button type="submit" [disabled]="form2.invalid" class="btn btn-primary btn-lg">Guardar registro</button>
+            </ng-template>
+            
           </div>
           <br>
         </div>
@@ -456,7 +485,6 @@
   </div>
 </div>
 <br><br><br>
-
 
 
 

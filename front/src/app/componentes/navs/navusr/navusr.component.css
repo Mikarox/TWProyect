@@ -5,7 +5,6 @@ input[type=button], input[type=submit], input[type=reset]  {
     background-color: #56baed;
     border: none;
     color: white;
-    padding: 15px 80px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -33,5 +32,16 @@ input[type=button], input[type=submit], input[type=reset]  {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
-  
-  
+  /* previsualizacón de foto de perfil */
+.perfil{
+  width:60px;
+  height:60px;
+  border-radius:360px;
+  object-fit: cover;
+  border:3px solid #ffffff;
+}
+.usrname{
+  display: inline;
+  font-size: 18px;
+  color: #ffffff;
+}  

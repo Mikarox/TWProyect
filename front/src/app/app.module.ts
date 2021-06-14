@@ -25,6 +25,8 @@ import { DiseseslistComponent } from './componentes/pages/diseseslist/diseseslis
 import { DiseseseditComponent } from './componentes/pages/disesesedit/disesesedit.component';
 import { DisesesaddComponent } from './componentes/pages/disesesadd/disesesadd.component';
 import { DisesesrmComponent } from './componentes/pages/disesesrm/disesesrm.component';
+import { WantsconsultComponent } from './componentes/pages/wantsconsult/wantsconsult.component';
+import { UsraddwantsComponent } from './componentes/pages/usraddwants/usraddwants.component';
 //paginas usuario
 import { UsrlistComponent } from './componentes/pages/usrlist/usrlist.component';
 import { UsrviewComponent } from './componentes/pages/usrview/usrview.component';
@@ -42,6 +44,10 @@ import { ForgotpassComponent } from './componentes/pages/forgotpass/forgotpass.c
 import { UsersService } from './services/users_service/users.service';
 import { DiseasesService } from './services/diseases_service/diseases.service';
 import { PatientsService } from './services/patients_service/patients.service';
+import { UsrconsulComponent } from './componentes/pages/usrconsul/usrconsul.component';
+import { PreviewdiseaseComponent } from './componentes/pages/previewdisease/previewdisease.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +75,11 @@ import { PatientsService } from './services/patients_service/patients.service';
     PrescriptsviewComponent,
     VerifyComponent,
     RegistroComponent,
-    ForgotpassComponent
+    ForgotpassComponent,
+    WantsconsultComponent,
+    UsraddwantsComponent,
+    UsrconsulComponent,
+    PreviewdiseaseComponent
   ],
   imports: [
     BrowserModule,

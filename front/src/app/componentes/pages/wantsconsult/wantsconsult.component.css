@@ -1,0 +1,46 @@
+.cartas{
+  box-shadow: 5px 5px 8px #888888;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 500px;
+}
+.cartas button{
+  margin: 0px 20px 0px 20px;
+}
+.cartas h5{
+  display: inline;
+}
+p.titulo1{
+  color: #5858587e;
+  font-weight: bolder;
+}
+/* previsualizacón de foto de perfil */
+.perfil{
+  width:120px;
+  height:120px;
+  border-radius:160px;
+  object-fit: cover;
+  border:5px solid #666;
+}
+
+.scroll{
+  display: flex;
+  align-items: center;
+  overflow:auto;
+  height: 350px;
+}
+
+.cabecera{
+  background-color:#198754;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 6px;
+    
+}
+.cartas:hover {
+	z-index: 1;
+  margin-bottom: 50px;
+}

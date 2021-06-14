@@ -62,8 +62,11 @@ class UserController {
                 });
             }
             req.body.USR_PASSW = yield bcryptjs_1.default.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
-            yield database_1.default.query('INSERT INTO users set ?', [req.body]);
-            res.json({ message: 'Usario registrado' });
+            yield database_1.default.query('INSERT INTO users set ?', [req.body], function (err, result, fields) {
+                if (err)
+                    throw err;
+                res.json({ message: 'Usario registrado', id: result.insertId });
+            });
         });
     }
     //Se ejecuta la query para actualizar un usuario por su id
@@ -77,15 +80,18 @@ class UserController {
                         throw err;
                     if (result[0]) { //Si existe el usairo
                         if (result[0].PHOTO) { //Si existe la foto
-                            const pathPhoto = result[0].PHOTO; //Se alamacena la ruta de la foto
-                            fs_1.default.unlinkSync(pathPhoto); //Se elimina la foto 
+                            if (req.file) { //si se envió una foto
+                                const pathPhoto = result[0].PHOTO; //Se alamacena la ruta de la foto
+                                fs_1.default.unlinkSync(pathPhoto); //Se elimina la foto  
+                            }
                         }
                         if (req.file) { //Si la foto existe 
                             req.body.PHOTO = req.file.path; //Se agrega la dirección de la foto
                         }
                         else {
-                            req.body.PHOTO = '';
+                            req.body.PHOTO = result[0].PHOTO; //Se queda con la foto actual
                         }
+                        req.body.USR_PASSW = yield bcryptjs_1.default.hash(req.body.USR_PASSW, 8); //Encriptando la contraseña
                         //Se ejecuta la query para actualizar al usario
                         yield database_1.default.query('UPDATE users set ? WHERE ID_USR = ?', [req.body, id], function (err, result, fields) {
                             if (err)

@@ -19,6 +19,7 @@ import { DiseseseditComponent } from './componentes/pages/disesesedit/disesesedi
 import { DisesesaddComponent } from './componentes/pages/disesesadd/disesesadd.component';
 import { DisesesrmComponent } from './componentes/pages/disesesrm/disesesrm.component';
 import { UsraddComponent } from './componentes/pages/usradd/usradd.component';
+import { UsraddwantsComponent } from './componentes/pages/usraddwants/usraddwants.component';
 import { VerifyComponent } from './componentes/pages/verify/verify.component';
 import { RegistroComponent } from './componentes/pages/registro/registro.component';
 import { ForgotpassComponent } from './componentes/pages/forgotpass/forgotpass.component';
@@ -54,6 +55,7 @@ const routes: Routes = [
       {path: 'usrview', component: UsrviewComponent},
       {path: 'usredit', component: UsreditComponent},
       {path: 'usradd', component: UsraddComponent},
+      {path: 'usraddwants/:patient', component: UsraddwantsComponent},
       {path: 'usrrm', component: UsrrmComponent},
       {path: 'diseaseslist', component: DiseseslistComponent},
       {path: '', redirectTo: '**', pathMatch: 'full' },
