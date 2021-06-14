@@ -9,13 +9,12 @@ import { User } from 'src/app/models/User';
 })
 export class IndexComponent implements OnInit {
   user!: User;
+
   constructor() {
     if(localStorage.getItem('sesion')){
     const sesion = localStorage.getItem('sesion'); 
     let value = " " + sesion + " ";
     this.user = JSON.parse(value);
-
-    console.log('hola dpt');
     
     if(this.user.USR_TYPE=='0'){
       location.replace('/usr');
@@ -24,7 +23,7 @@ export class IndexComponent implements OnInit {
       location.replace('/nurse');
     }
     if(this.user.USR_TYPE=='2'){
-      location.replace('/doc/');
+      location.replace('/doc');
     }
           
 
