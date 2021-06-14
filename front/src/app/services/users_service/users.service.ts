@@ -17,7 +17,7 @@ export class UsersService {
   getUsers(): Observable<User> {
     return this.http.get(`${this.API_URI}/users`)
   }
-  getUser(id: string): Observable<User> {
+  getUser(id: any): Observable<User> {
     return this.http.get(`${this.API_URI}/users/${id}`);
   }
   deleteUser(id: string): Observable<User> {
@@ -49,8 +49,24 @@ export class UsersService {
   verifyEmail(email: string){
     return this.http.get(`${this.API_URI}/users/verify-userEmail/${email}`);
   }
-  updateUser(id: string, updateUser: User): Observable<User>{
-    return this.http.put(`${this.API_URI}/users/${id}`, updateUser);
+  updateUser(id: any, updateUser: User): Observable<User>{
+    const fd = new FormData();
+    fd.append('USR_NAME', updateUser.USR_NAME || '');
+    fd.append('USR_PASSW', updateUser.USR_PASSW || '');
+    fd.append('USR_TYPE', updateUser.USR_TYPE || '')
+    fd.append('NAME', updateUser.NAME || '');
+    fd.append('LASTNAME', updateUser.LASTNAME || '');
+    fd.append('BIRTH', updateUser.BIRTH || '');
+    fd.append('EMAIL', updateUser.EMAIL || '');
+    fd.append('PHONE', updateUser.PHONE || '');
+    fd.append('COUNTRY', updateUser.COUNTRY || '');
+    fd.append('STREET', updateUser.STREET || '');
+    fd.append('CITY', updateUser.CITY || '');
+    fd.append('POSTCODE', updateUser.POSTCODE || '');
+    fd.append('PHOTO', updateUser.PHOTO || ''),
+    fd.append('IS_REG', updateUser.IS_REG || ''),
+    fd.append('WANTS_CONS', updateUser.WANTS_CONS || '')
+    return this.http.put(`${this.API_URI}/users/${id}`, fd);
   }
 
   valityUser(email: string): Observable<User> {

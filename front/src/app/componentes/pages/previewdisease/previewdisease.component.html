@@ -1,0 +1,43 @@
+<br><br><br>
+<div class="col-md-10 offset-md-1">
+  <div class="card">
+   <div class="card-header header-consul">
+      Lista de pacientes que solicitan una consulta médica 
+    </div>
+    <div class="cardd-body"> 
+      <div class="container">
+        <div class="row">
+          <div class="scroll">
+            <div class="col-sm-12 col-md-10 col-lg-5" *ngFor="let disease of diseases; let i=index;">
+              <div class="card cartas me-5">
+                <div class="card-header">
+                  <h5>Paciente</h5>
+                </div> 
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-4 text-center" *ngIf="disease.IMAGE
+                    else imagenDefault">
+                      <img [src]="'http://localhost:3000/' + disease.IMAGE" class="image">
+                    </div> 
+                    <ng-template #imagenDefault>
+                      <div class="col-sm-12 col-md-12 col-lg-4 text-center">
+                        <img src="../../../../assets/images/enfermo.jpg" class="image">
+                      </div>
+                    </ng-template>
+                    <div class="col-sm-12 col-md-12 col-lg-8 ">
+                      <p class="py-0 my-0 ms-0 ps-0 titulo1">Nombre: </p>
+                      <h4 class="card-title">{{disease.NAME}} {{disease.MEDICAL_TERM}}</h4>
+                    </div> 
+                  </div>  
+                </div>
+                <div class="card-footer">
+                  <!-- <button class="btn btn-primary" [routerLink]="'../usraddwants/'+patient.ID_USR" routerLinkActive="active">Preparar consulta</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>

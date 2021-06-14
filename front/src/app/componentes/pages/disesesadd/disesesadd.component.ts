@@ -156,10 +156,19 @@ export class DisesesaddComponent implements OnInit {
         .subscribe(
           res => {
             console.log(res);
+            Swal.fire({
+              icon: 'success',
+              title: 'Registro guardado',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(()=>{
+              location.href="http://localhost:4200//doc/";
+            })
+            
           },
           err => console.log(err)
         )
-        location.reload();
+        
       } else if (result.isDenied) {
         Swal.fire({
           title:'El registro no se envió', 
