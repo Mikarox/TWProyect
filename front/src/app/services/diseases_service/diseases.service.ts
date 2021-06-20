@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DiseasesService {
+  
   API_URI = 'http://localhost:3000/api' //Como atributo la dirección del servidor
   constructor(private http: HttpClient) { }
 
