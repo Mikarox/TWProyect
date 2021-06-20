@@ -10,6 +10,7 @@ class Server{
   public app: Application; //Se define el servidor en la variable app
   constructor(){
     this.app=express(); //Se ejecuta el servidor con la función express()
+
     this.config(); //Se ejecuta el método de configuraciones del servidor
     this.routes(); //Se ejecuta el método de rutas (peticiones)
   }
@@ -28,9 +29,7 @@ class Server{
     this.app.use('/api/patients',patientsRoutes); //ruta para trabajar con la tabla patients y medical_ history
   }
   start(): void{ //El servidor se pone a la escucha
-    this.app.listen(this.app.get('port'), ()=> {
-      console.log('Server on port',this.app.get('port'));
-    });
+    this.app.listen(3000,'0.0.0.0');
   }
 }
 //Se crea y ejecuta el servidor
