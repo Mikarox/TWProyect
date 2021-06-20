@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from 'src/app/models/User';
 import { UsersService } from '../../../services/users_service/users.service';
+// import { WebsocketioService } from '../../../services/websocketio_servive/websocketio.service';
 
 @Component({
   selector: 'app-navusr',
@@ -11,7 +12,7 @@ import { UsersService } from '../../../services/users_service/users.service';
 export class NavusrComponent implements OnInit {
   user!: User; 
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
     if(localStorage.getItem('sesion')){
@@ -30,6 +31,7 @@ export class NavusrComponent implements OnInit {
         err => console.log(err)
       ) 
     }
+    // this.socket.sendMessage('Hola');
   }
 
   

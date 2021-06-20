@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service'
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +49,7 @@ import { DiseasesService } from './services/diseases_service/diseases.service';
 import { PatientsService } from './services/patients_service/patients.service';
 import { UsrconsulComponent } from './componentes/pages/usrconsul/usrconsul.component';
 import { PreviewdiseaseComponent } from './componentes/pages/previewdisease/previewdisease.component';
+import { DiseasesdetailsComponent } from './componentes/pages/diseasesdetails/diseasesdetails.component';
 
 
 @NgModule({
@@ -79,19 +83,22 @@ import { PreviewdiseaseComponent } from './componentes/pages/previewdisease/prev
     WantsconsultComponent,
     UsraddwantsComponent,
     UsrconsulComponent,
-    PreviewdiseaseComponent
+    PreviewdiseaseComponent,
+    DiseasesdetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     UsersService,
     DiseasesService,
-    PatientsService
+    PatientsService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

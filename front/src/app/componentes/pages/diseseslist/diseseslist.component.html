@@ -1,3 +1,66 @@
 <app-navindex id="navindex"></app-navindex>
 
-<p>diseseslist works!</p>
+<div class="col-md-12 offset-md-0">
+  <div class="card">
+    <div class="card-header header-consul">
+      Enfermedades
+    </div>
+    <div class="cardd-body ">
+      <div class="container-fluid ">
+        <div class="row">
+          <h4 class="subTitulo text-center">Aprende acerca de las enfermedades y afecciones más consultadas</h4> 
+            <div class="col-sm-12 col-md-6 col-lg-4 " *ngFor="let disease of diseases; let i=index;">
+              <div class="card cartas text-white bg-warning ">
+                <div class="card-header">
+                  <h5>Enfermedad</h5>
+                </div> 
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-6 text-left" *ngIf="disease.IMAGE
+                    else imagenDefault">
+                      <img [src]="'http://localhost:3000/' + disease.IMAGE" class="image">
+                    </div> 
+                    <ng-template #imagenDefault>
+                      <div class="col-sm-12 col-md-12 col-lg-6 text-left">
+                        <img src="../../../../assets/images/enfermo.jpg" class="image">
+                      </div>
+                    </ng-template>
+                    <div class="col-sm-12 col-md-12 col-lg-6 ">
+                      <p class="py-0 my-0 ms-0 ps-0 titulo1">Nombre común: </p>
+                      <h5 class="card-title">{{disease.NAME}}</h5>
+                      <p class="py-0 my-0 ms-0 ps-0 titulo1">Término médico: </p>
+                      <h5>{{disease.MEDICAL_TERM}}</h5>
+                    </div> 
+                    <div class="row text-center mt-2 ms-0 "></div>
+                      <div class="col-sm-12 col-md-12 col-lg-4 ">
+                        <div class="etiqueta1 text-center m-0">
+                          <p class="py-0 my-0 ms-0 ps-0 titulo2">Letalidad: </p>
+                          <div class="icon2">{{disease.LETHALITY}}</div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-12 col-lg-4 m-0">
+                        <div class="etiqueta2 text-center p-1 m-0">
+                          <p class="py-0 my-0 ms-0 ps-0 titulo2">Grupos de riesgo: </p>
+                          <div class="icon2" [innerHTML]="disease.RISK_GROUPS"></div>
+                        </div>
+                      </div>
+                       
+                      <div class="col-sm-12 col-md-12 col-lg-4">
+                        <div class="etiqueta3 text-center m-0">
+                          <p class="py-0 my-0 ms-0 ps-0 titulo2">Eecurrencia: </p>
+                          <div class="icon2">{{disease.RECURRENCE}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                <div class="card-footer">
+                  <button class="btn btn-dark ms-1" [routerLink]="'../usraddwants/'+disease.ID_DISEASE" routerLinkActive="active">Ver detalles</button>
+                </div>   
+              </div> 
+            </div>  
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<br><br><br>
