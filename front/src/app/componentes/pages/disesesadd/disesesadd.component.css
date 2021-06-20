@@ -120,7 +120,6 @@
 .perfil{
     width:170px;
     height:170px;
-    border-radius:160px;
     object-fit: cover;
     border:5px solid #666;
 }

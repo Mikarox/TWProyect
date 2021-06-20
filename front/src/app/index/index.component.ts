@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { User } from 'src/app/models/User';
@@ -9,14 +10,13 @@ import { User } from 'src/app/models/User';
 })
 export class IndexComponent implements OnInit {
   user!: User;
-  constructor() {
+  roomName: string = 'salaUsr';
+  constructor(private router: ActivatedRoute) {
     if(localStorage.getItem('sesion')){
     const sesion = localStorage.getItem('sesion'); 
     let value = " " + sesion + " ";
     this.user = JSON.parse(value);
-
     console.log('hola dpt');
-    
     if(this.user.USR_TYPE=='0'){
       location.replace('/usr');
     }
@@ -26,16 +26,11 @@ export class IndexComponent implements OnInit {
     if(this.user.USR_TYPE=='2'){
       location.replace('/doc/');
     }
-          
-
   }else{  
-    
-    
   } 
 
 }
 
   ngOnInit(): void {
   }
-
 }

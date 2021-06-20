@@ -10,7 +10,8 @@ const path_1 = __importDefault(require("path"));
 const usersRoutes_1 = __importDefault(require("./routes/usersRoutes"));
 const diseasesRoutes_1 = __importDefault(require("./routes/diseasesRoutes"));
 const patientsRoutes_1 = __importDefault(require("./routes/patientsRoutes"));
-class Server {
+const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
+class MyServer {
     constructor() {
         this.app = express_1.default(); //Se ejecuta el servidor con la función express()
         this.config(); //Se ejecuta el método de configuraciones del servidor
@@ -26,6 +27,7 @@ class Server {
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads'))); //El navegador puede acceder a uploads
     }
     routes() {
+        this.app.use('/api', indexRoutes_1.default);
         this.app.use('/api/users', usersRoutes_1.default); //ruta para trabajar con la tabla usrs de la base de datos
         this.app.use('/api/diseases', diseasesRoutes_1.default); //ruta para trabajar con la tabla diseases de la base de datos
         this.app.use('/api/patients', patientsRoutes_1.default); //ruta para trabajar con la tabla patients y medical_ history
@@ -37,5 +39,14 @@ class Server {
     }
 }
 //Se crea y ejecuta el servidor
-const server = new Server();
+const server = new MyServer();
 server.start();
+// //Se crea un nuevo servidor http que trabajará con los websockets
+// const httpServer = createServer(server.app);
+// const server2 = require('http').Server(server.app);
+// const io = require('socket.io')(server2);
+// io.on('connection', (socket: any) => {
+//   const idHandShake = socket.id;
+//   // const msj = socket.handshake.query;
+//   console.log(`Hola dispositivo: ${idHandShake}`)
+// });
