@@ -1,0 +1,25 @@
+.borde {
+    border: 3px solid #a6f6f1;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+}
+.borde:hover{
+    box-shadow: 1px 1px 20px #d2d2d2;
+}
+
+.titulo {
+    color: #709fb0;
+    font-weight: bold;
+}
+.img{
+    width: 50%;
+    height: 42%;
+    float: right;
+    position: relative;
+    padding-top: 1%;
+    padding-right: 20px;
+    padding-left: 20px;
+    
+}
+.img:hover{
+    filter: blur(5px);
+}
