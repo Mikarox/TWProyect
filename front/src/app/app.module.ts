@@ -46,6 +46,7 @@ import { DiseasesService } from './services/diseases_service/diseases.service';
 import { PatientsService } from './services/patients_service/patients.service';
 import { UsrconsulComponent } from './componentes/pages/usrconsul/usrconsul.component';
 import { PreviewdiseaseComponent } from './componentes/pages/previewdisease/previewdisease.component';
+import { InfopageComponent } from './componentes/pages/infopage/infopage/infopage.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { PreviewdiseaseComponent } from './componentes/pages/previewdisease/prev
     WantsconsultComponent,
     UsraddwantsComponent,
     UsrconsulComponent,
-    PreviewdiseaseComponent
+    PreviewdiseaseComponent,
+    InfopageComponent
   ],
   imports: [
     BrowserModule,

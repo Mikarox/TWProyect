@@ -45,4 +45,14 @@ input[type=button], input[type=submit], input[type=reset]  {
   font-size: 18px;
   color: #ffffff;
 }  
-  
+
+.navbar-logo{
+  display: inline-block;
+  vertical-align: middle;
+  width: 70px;
+}
+.navbar-logo img{
+  display: block;
+  width: 110%;
+  height: auto;
+}
